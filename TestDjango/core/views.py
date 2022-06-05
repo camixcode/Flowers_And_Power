@@ -4,3 +4,7 @@ from django.shortcuts import render
 
 def home(request):
     return render(request,'core/home.html')
+
+def home(request):
+    contexto={"nombre": "diego araya"}
+    return render(request,'core/home.html', contexto)
