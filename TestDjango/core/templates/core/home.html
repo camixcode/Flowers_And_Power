@@ -112,7 +112,7 @@
     -->
 
 
-    <!--- Categorias-->
+
 
     <div class="row">
         <h1> Hola pagina de prueba</h1>
@@ -120,9 +120,16 @@
     <h2> Bienvenido {{nombre}} </h2>
     {% load static %}
     <div class="row">
-        <img src="{%static 'core/img/2_ned.jpg' %}" alt="">
+        <img src="{% static 'core/img/3_bart.jpg' %}" alt="">
+    </div>
+    <div id="compras">
+        {% load static %}
+        <img src="{% static 'core/img/464-4646442_carrito-de-compras-carro-de-compras-blanco-clipart.jpg' %}" alt="" width="50" height="50">
+        <a id="comprastxt" class="navbar-brand" href="#"> <i>Compras </i>
+        </a>
     </div>
 
+    <!--- Categorias
     <h1 id="texto"><strong>Más verde a tu vida</strong> </h1>
 
     <p id="parrafo">Inspírate con nuestros árboles, plantas, flores, maceteros y encuentra lo que necesitas para darle más verde a tu vida. Si no encuentras en nuestro catálogo la planta que andabas buscando, escríbenos a contacto@flowersandpower.cl y haremos lo posible
@@ -193,7 +200,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
 
