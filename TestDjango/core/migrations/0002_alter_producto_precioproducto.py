@@ -10,9 +10,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='producto',
-            name='precioProducto',
-            field=models.IntegerField(verbose_name='precion del producto'),
-        ),
+       
     ]

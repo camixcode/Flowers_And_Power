@@ -120,14 +120,23 @@
     <h2> Bienvenido {{nombre}} </h2>
     {% load static %}
     <div class="row">
-        <img src="{% static 'core/img/3_bart.jpg' %}" alt="">
+        <img src="{% static 'core/img/3_bart.jpg' %}" alt="" width="100" height="100">
     </div>
-    <div id="compras">
-        {% load static %}
-        <img src="{% static 'core/img/464-4646442_carrito-de-compras-carro-de-compras-blanco-clipart.jpg' %}" alt="" width="50" height="50">
-        <a id="comprastxt" class="navbar-brand" href="#"> <i>Compras </i>
-        </a>
+    {% for pr in productos %}
+    <div class="card w-40 card-border mb-2">
+        <div class="card h-100">
+            <img src="{{pr.imagenProducto}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Roots</h5>
+                <a href="archivos iniciales/Fotos/FotosProductos/P_6.jpg">ver producto</a>
+                <p></p>
+                <p class="card-text">{{pr.nombreProducto}}</p>
+                <p class="card-text">${{pr.precioProducto}}</p>
+                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            </div>
+        </div>
     </div>
+    {% endfor %}
 
     <!--- Categorias
     <h1 id="texto"><strong>Más verde a tu vida</strong> </h1>
