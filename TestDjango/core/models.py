@@ -20,3 +20,11 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombreProducto
 
+
+class Usuario(models.Model):
+    idUsuario = models.IntegerField(primary_key=True, verbose_name='Id de usuario')
+    nombreUsuario = models.CharField(max_length=50,verbose_name='Nombre de usuario')
+    contrasena = models.CharField(max_length=50, verbose_name='contrasena')
+
+    def __str__(self):
+        return self.nombreUsuario
