@@ -16,3 +16,10 @@ def home (request):
         'productos': productos
     }
     return render(request,'core/home.html', datos)
+
+def home(request):
+    return render(request,'core/categoria.html')
+
+def home(request):
+    return render(request,'core/contacto.html')
+    
