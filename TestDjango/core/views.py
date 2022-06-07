@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from . models import Producto
-from . models import Arbusto
 from . models import Categoria
-from . models import Contacto
 from . models import F_crear_Cuenta
 from . models import HistoricoCompra
 from . models import InicioSesion1
@@ -13,6 +11,9 @@ from . models import PerfilProducto
 from . models import Seguimiento
 from . models import Tierra
 from . models import index_home
+from . models import Arbusto
+from . models import home
+
 
 # Create your views here.
 
