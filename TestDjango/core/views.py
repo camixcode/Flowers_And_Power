@@ -1,3 +1,4 @@
+from sqlite3 import DateFromTicks
 from django.shortcuts import render
 from . models import Producto
 
@@ -25,3 +26,7 @@ def home(request):
 
 def Arbusto(request):
     return render(request, 'core/Arbusto.html')
+
+
+def Contacto(request):
+    return render(request, 'core/Contacto.html')
