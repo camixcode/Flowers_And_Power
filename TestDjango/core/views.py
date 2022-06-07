@@ -23,4 +23,5 @@ def home(request):
     }
     return render(request, 'core/home.html', datos)
 
-
+def Arbusto(request):
+    return render(request, 'core/Arbusto.html')
