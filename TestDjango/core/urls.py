@@ -5,28 +5,30 @@ from django.urls import path
 
 
 from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,listado_producto ,Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero,index_homeOG
+# ,NavBar
 
 
 urlpatterns = [
     path('',home , name="Home"),
-    path('Home2', index_home, name="home"),
+    path('index_home', index_home, name="index_home"),
     path('Arbusto/', Arbusto, name="Arbusto"),
     path('Home/',index_homeOG , name="home"),
     path('Contacto/', Contacto, name="Contacto"),
     path('Categoria1/', Categoria1, name="Categoria1"),
-    path('Crear Cuenta/', F_Crear_Cuenta, name="Crear Cuenta"),
-    path('Formulario Usuario/', form_mod_usuario, name="Formulario Usuario"),
-    path('Historico de Compras/', HistoricoCompra, name="Historico de Compras"),
-    path('Home/', index_home, name="Home"),
-    path('Inicio de Sesion/', InicioSesion1, name="Inicio de Sesion"),
-    path('Lista de productos/', listado_producto, name="Lista de productos"),
-    path('Producto de Macetero/', Macetero, name="Producto de Macetero"),
+    path('F_Crear_Cuenta/', F_Crear_Cuenta, name="F_Crear_Cuenta"),
+    path('form_mod_usuario/', form_mod_usuario, name="form_mod_usuario"),
+    path('HistoricoCompra/', HistoricoCompra, name="HistoricoCompra"),
+    #path('Home/', index_home, name="Home"),
+    path('InicioSesion1/', InicioSesion1, name="InicioSesion1"),
+    path('listado_producto/', listado_producto, name="listado_producto"),
+    path('Macetero/', Macetero, name="Macetero"),
     path('Nosotros/', Nosotros, name="Nosotros"),
     path('Paypal/', Paypal, name="Paypal"),
-    path('Perfil de Producto/', PerfilProducto, name="Perfil de Producto"),
+    path('PerfilProducto/', PerfilProducto, name="PerfilProducto"),
     path('Producto/', Producto1, name="Producto"),
-    path('Seguimiento de Compra/', Seguimiento, name="Seguimiento de Compra"),
-    path('Producto de Tierra/', Tierra, name="Tierra"),
+    path('Seguimiento/', Seguimiento, name="Seguimiento"),
+    path('Tierra/', Tierra, name="Tierra"),
+    #path('Nav/', NavBar, name="Nav"),
 
 ]
 
