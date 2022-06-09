@@ -24,7 +24,10 @@
 
 </head>
 
+
+
 <body>
+
     <!--<h1>FLOWERSANDPOWER</h1>-->
     <!--- Navbar Superior-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-white">
@@ -44,31 +47,31 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="index_home.html">Pagina Principal</a>
+                        <a class="nav-link " aria-current="page" href="{% url 'index_home' %}">Pagina Principal</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cuenta Usuario</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="InicioSesion1.html">Acceder</a></li>
+                            <li><a class="dropdown-item" href="{% url 'InicioSesion1' %}">Acceder</a></li>
                             <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#modaldesconnexion" id="modaldesconnexionb">Desconectar Cuenta</a></li>
-                            <li><a class="dropdown-item" href="F_Crear_Cuenta.html">Crear Cuenta de Usuario</a></li>
-                            <li><a class="dropdown-item" href="Seguimiento.html">Seguimiento de Compra</a></li>
-                            <li><a class="dropdown-item" href="HistoricoCompra.html">Historico de Compras</a></li>
+                            <li><a class="dropdown-item" href="{% url 'F_Crear_Cuenta' %}">Crear Cuenta de Usuario</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Seguimiento' %}">Seguimiento de Compra</a></li>
+                            <li><a class="dropdown-item" href="{% url 'HistoricoCompra' %}">Historico de Compras</a></li>
 
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="Producto.html" role="button" aria-expanded="false">Producto</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="Producto.html">Ver Productos</a></li>
-                            <li><a class="dropdown-item" href="Categoria.html">Ver Categorias</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Producto'%}">Ver Productos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Categoria1'%}">Ver Categorias</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="Contacto.html">Contacto</a>
+                        <a class="nav-link " aria-current="page" href="{% url 'Contacto'%}">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="Nosotros.html">Nosotros</a>
+                        <a class="nav-link " aria-current="page" href="Nosotros">Nosotros</a>
                     </li>
                 </ul>
                 <br>
@@ -129,12 +132,12 @@
 
     <div id="categorias">
         <div>
-            <div class="card w-40 card-border mb-2">
+            <div class="card w-40 card-border mb-3">
                 <div class="card h-100">
-                    <img src="archivos iniciales/Fotos/FotosProductos/P_1.jpg" class="card-img-top" alt="...">
+                    <img src="{% static 'core/img/imghome/P_1.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Fiskars</h5>
-                        <a href="archivos iniciales/Fotos/FotosProductos/P_1.jpg">ver producto</a>
+                        <a href="{% static 'core/img/imghome/P_1.jpg' %}">ver producto</a>
                         <p></p>
                         <p class="card-text">Pack Herramientas de Cultivo (Pala, Rastrillo y Trasplantador)</p>
                         <p class="card-text">$11.990</p>
@@ -145,12 +148,12 @@
         </div>
 
         <div>
-            <div class="card w-40 card-border mb-2">
+            <div class="card w-40 card-border mb-3">
                 <div class="card h-100">
-                    <img src="archivos iniciales/Fotos/FotosProductos/P_2.jpg" class="card-img-top" alt="...">
+                    <img src="{% static 'core/img/imghome/P_2.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Anasac </h5>
-                        <a href="archivos iniciales/Fotos/FotosProductos/P_2.jpg">ver producto</a>
+                        <a href="{% static 'core/img/imghome/P_2.jpg' %}">ver producto</a>
                         <p></p>
                         <p class="card-text">Fertilizante Fert Plant. De gran uso y rápido efecto.</p>
                         <p class="card-text">$13.990</p>
@@ -160,12 +163,12 @@
             </div>
         </div>
         <div>
-            <div class="card w-40 card-border mb-2">
+            <div class="card w-40 card-border mb-3">
                 <div class="card h-100">
-                    <img src="archivos iniciales/Fotos/FotosProductos/P_4.jpg" class="card-img-top" alt="...">
+                    <img src="{% static 'core/img/imghome/P_4.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Anasac</h5>
-                        <a href="archivos iniciales/Fotos/FotosProductos/P_4.jpg">ver producto</a>
+                        <a href="{% static 'core/img/imghome/P_4.jpg' %}">ver producto</a>
                         <p></p>
                         <p class="card-text">Semillas de Acelga</p>
                         <p class="card-text">$1.990</p>
@@ -175,12 +178,12 @@
             </div>
         </div>
         <div>
-            <div class="card w-40 card-border mb-2">
+            <div class="card w-40 card-border mb-3">
                 <div class="card h-100">
-                    <img src="archivos iniciales/Fotos/FotosProductos/P_6.jpg" class="card-img-top" alt="...">
+                    <img src="{% static 'core/img/imghome/P_5.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Roots</h5>
-                        <a href="archivos iniciales/Fotos/FotosProductos/P_6.jpg">ver producto</a>
+                        <a href="{% static 'core/img/imghome/P_5.jpg' %}">ver producto</a>
                         <p></p>
                         <p class="card-text">Macetero Geometrico</p>
                         <p class="card-text">$35.990</p>
@@ -285,6 +288,8 @@
             $("#modaldesconnexion").modal('show');
         });
     </script>
+
+
 </body>
 
 </html>

@@ -85,3 +85,7 @@ def Seguimiento(request):
 
 def Tierra(request):
     return render(request, 'core/Tierra.html')                          
+
+#def NavBar(request):
+ #   return render(request, 'core/NavBar.html')  
+     
