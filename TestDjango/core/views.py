@@ -31,6 +31,8 @@ def Arbusto(request):
 def Contacto(request):
     return render(request, 'core/Contacto.html')
 
+
+
 def Categoria1(request):
     return render(request, 'core/Categoria1.html')
 
@@ -45,6 +47,9 @@ def HistoricoCompra(request):
 
 def index_home(request):
     return render(request, 'core/index_home.html')    
+
+def index_homeOG(request):
+    return render(request, 'core/index_homeOG.html')    
 
 def InicioSesion1(request):
     return render(request, 'core/InicioSesion1.html')        

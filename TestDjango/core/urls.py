@@ -4,11 +4,12 @@ from django.urls import path
 
 
 
-from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,listado_producto ,Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero
+from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,listado_producto ,Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero,index_homeOG
 
 
 urlpatterns = [
-    path('', index_home, name="home"),
+    path('', index_homeOG, name="home"),
+    path('Home2', index_home, name="home"),
     path('Arbusto/', Arbusto, name="Arbusto"),
     path('Home/', home, name="Home"),
     path('Contacto/', Contacto, name="Contacto"),
