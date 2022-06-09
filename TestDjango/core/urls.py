@@ -8,10 +8,10 @@ from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_
 
 
 urlpatterns = [
-    path('', index_homeOG, name="home"),
+    path('',home , name="Home"),
     path('Home2', index_home, name="home"),
     path('Arbusto/', Arbusto, name="Arbusto"),
-    path('Home/', home, name="Home"),
+    path('Home/',index_homeOG , name="home"),
     path('Contacto/', Contacto, name="Contacto"),
     path('Categoria1/', Categoria1, name="Categoria1"),
     path('Crear Cuenta/', F_Crear_Cuenta, name="Crear Cuenta"),
