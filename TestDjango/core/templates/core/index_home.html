@@ -12,8 +12,8 @@
     <!--<title>FLOWERSANDPOWER</title>-->
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
-    <link rel="stylesheet" href="min.css">
-    <link rel="stylesheet" href="stylos.css">
+    <link rel="stylesheet" href="min.css"> {% load static %} "{% static 'core/img/Flowers.png' %}
+    <link rel="stylesheet" href="{% static 'core/css.stylos.css'%}">
     <link rel="stylesheet" href="popper.min.js">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -109,7 +109,70 @@
     </button>
     </div>
 
+    <!--- DIEGO-->
+    <div class="row">
+        <h1> Hola pagina de prueba</h1>
+    </div>
+    <h2> Bienvenido {{nombre}} </h2>
 
+
+    <h1>Listado vehiculos</h1>
+
+
+    <div class="container ">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <table border="3" style="width: 1000px;">
+                        <tr>
+                            <td>Id producto</td>
+                            <td>Nombre Prducto</td>
+                            <td>Precio</td>
+                            <td>descripcion</td>
+                            <td>Categoria</td>
+                        </tr>
+                        {% for pr in productos %}
+                        <tr>
+                            <td>{{pr.idProducto}}</td>
+                            <td>{{pr.nombreProducto}}</td>
+                            <td>{{pr.precioProducto}}</td>
+                            <td>{{pr.descripcionProducto}}</td>
+                            <td>{{pr.categoria}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    {% for pr in productos %}
+
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{pr.imagenProducto}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{pr.idProducto}}</h5>
+                        <p class="card-text">{{pr.nombreProducto}}</p>
+                        <p class="card-text">${{pr.precioProducto}}</p>
+                        <a href="{% url 'Contacto'%}" class="btn btn-primary ">Agregar al carrito</a>
+                        <a href="Arbusto.html" class="btn btn-primary ">Agregar al carrito</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    {% endfor %}
 
     <!--- Categorias-->
 
