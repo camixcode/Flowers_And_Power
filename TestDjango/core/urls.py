@@ -4,7 +4,7 @@ from django.urls import path
 
 
 
-from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,listado_producto ,Paypal,PerfilProducto,Producto,Seguimiento,Tierra, Macetero
+from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,listado_producto ,Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero
 
 
 urlpatterns = [
@@ -23,7 +23,7 @@ urlpatterns = [
     path('Nosotros/', Nosotros, name="Nosotros"),
     path('Paypal/', Paypal, name="Paypal"),
     path('Perfil de Producto/', PerfilProducto, name="Perfil de Producto"),
-    path('Producto/', Producto, name="Producto"),
+    path('Producto/', Producto1, name="Producto"),
     path('Seguimiento de Compra/', Seguimiento, name="Seguimiento de Compra"),
     path('Producto de Tierra/', Tierra, name="Tierra"),
 

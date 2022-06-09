@@ -64,8 +64,8 @@ def Paypal(request):
 def PerfilProducto(request):
     return render(request, 'core/PerfilProducto.html')      
 
-def Producto(request):
-    return render(request, 'core/Producto.html')      
+def Producto1(request):
+    return render(request, 'core/Producto1.html')      
 
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
