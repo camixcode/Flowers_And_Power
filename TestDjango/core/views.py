@@ -1,6 +1,9 @@
+from re import U
 from sqlite3 import DateFromTicks
 from django.shortcuts import render
 from . models import Producto
+from .models import Usuario
+from forms import formLog
 
 
 
@@ -8,22 +11,27 @@ from . models import Producto
 
 
 def home(request):
-    return render(request, 'core/home.html')
-
-
-def home(request):
-    contexto = {"nombre": "diego araya"}
-    return render(request, 'core/home.html', contexto)
-
-
-def home(request):
-    productos = Producto.objects.all()
-
+    productos = Producto.objects.filter(categoria_id='1')
     datos = {
-        'productos': productos
+        'productos': productos,
+        "nombre": "diego araya"
     }
-    return render(request, 'core/home.html', datos)
 
+    if request.method == 'POST':
+        formulario = formLog(request.POST)
+        if formulario.is_valid:
+            User = request.POST('nombreUsuario')
+            Clave = request.POST('contrasena')
+
+            verificacion = Usuario.objects.filter(nombreUsuario=User,contrasena=Clave).exists
+            if verificacion == True:
+                return render(request, 'core/home.html', datos)
+            else:
+                return render(request, 'core/index_home.html', datos)
+
+    else:
+        formulario = formLog()
+        
 def Arbusto(request):
     return render(request, 'core/Arbusto.html')
 
