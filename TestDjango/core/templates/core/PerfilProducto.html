@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-{% load static %}
-
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,7 +18,7 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.js">
     <link rel="stylesheet" href="min.css">
-    <link rel="stylesheet" href="{% static 'core/css/stylos.css'%}">
+    <link rel="stylesheet" href="stylos.css">
     <link rel="stylesheet" href="popper.min.js">
 
 </head>
@@ -61,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="InicioSesion1.html">Acceder</a></li>
                             <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#modaldesconnexion" id="modaldesconnexionb">Desconectar Cuenta</a></li>
-                            <li><a class="dropdown-item" href="CrearCuenta.html">Crear Cuenta de Usuario</a></li>
+                            <li><a class="dropdown-item" href="F_Crear_Cuenta.html">Crear Cuenta de Usuario</a></li>
                             <li><a class="dropdown-item" href="Seguimiento.html">Seguimiento de Compra</a></li>
                             <li><a class="dropdown-item" href="HistoricoCompra.html">Historico de Compras</a></li>
 
@@ -81,13 +78,12 @@
                         <a class="nav-link " aria-current="page" href="Nosotros.html">Nosotros</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
                 <br>
-
             </div>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
             <form class="d-flex">
                 <button class="btn btn-outline-dark" type="submit">
           <i class="bi-cart-fill me-1"></i>
@@ -99,6 +95,7 @@
         </div>
         </form>
     </nav>
+
 
 
     <!--- Categorias-->
