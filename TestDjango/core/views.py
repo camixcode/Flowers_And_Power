@@ -1,9 +1,10 @@
 from re import U
 from sqlite3 import DateFromTicks
+from xml.dom.minidom import Document
 from django.shortcuts import render
 from . models import Producto
 from .models import Usuario
-from forms import formLog
+
 
 
 
@@ -17,21 +18,9 @@ def home(request):
         "nombre": "diego araya"
     }
 
-    if request.method == 'POST':
-        formulario = formLog(request.POST)
-        if formulario.is_valid:
-            User = request.POST('nombreUsuario')
-            Clave = request.POST('contrasena')
-
-            verificacion = Usuario.objects.filter(nombreUsuario=User,contrasena=Clave).exists
-            if verificacion == True:
-                return render(request, 'core/home.html', datos)
-            else:
-                return render(request, 'core/index_home.html', datos)
-
-    else:
-        formulario = formLog()
-        
+   
+    return render(request, 'core/home.html', datos)
+      
 def Arbusto(request):
     return render(request, 'core/Arbusto.html')
 
@@ -84,7 +73,10 @@ def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
 
 def Tierra(request):
-    return render(request, 'core/Tierra.html')                          
+    return render(request, 'core/Tierra.html')     
+
+def form_usuario(request):
+    return render(request, 'core/form_usuario.html')                       
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
