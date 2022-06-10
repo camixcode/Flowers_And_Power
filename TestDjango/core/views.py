@@ -12,7 +12,7 @@ from .models import Usuario
 
 
 def home(request):
-    productos = Producto.objects.filter(categoria_id='1')
+    productos = Producto.objects.all()
     datos = {
         'productos': productos,
         "nombre": "diego araya"
