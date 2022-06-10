@@ -1,8 +1,10 @@
-from dataclasses import field
+
 from django import forms
+from django.forms import ModelForm
 from .models import Usuario
 
-class formLog(forms.ModelForm):
+class RegistrarUsuario(ModelForm):
+
     class Meta:
-        Model = Usuario
-        fields = ['nombreUsuario','Contrasena']
+        model = Usuario
+        fields =['idUsuario','nombres','apellidos','nombreUsuario','contrasena']
