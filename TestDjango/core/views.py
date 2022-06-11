@@ -4,7 +4,7 @@ from xml.dom.minidom import Document
 from xml.parsers.expat import model
 from django.shortcuts import render
 
-from .forms import RegistrarUsuario
+from .forms import RegistrarProducto, RegistrarUsuario
 from . models import Producto
 from .models import Usuario
 
@@ -56,7 +56,17 @@ def Categoria1(request):
     return render(request, 'core/Categoria1.html')
 
 def F_Crear_Cuenta(request):
-    return render(request, 'core/F_Crear_Cuenta.html')
+    datos ={
+            'form': RegistrarUsuario()
+    }
+    if request.method =='POST':
+        formulario = RegistrarUsuario(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            datos['mensaje'] = "Guardado correctamente"
+
+
+    return render(request, 'core/F_Crear_Cuenta.html',datos)
 
 def form_mod_usuario(request):
     return render(request, 'core/form_mod_usuario.html')
@@ -107,8 +117,20 @@ def form_usuario(request):
             formulario.save()
             datos['mensaje'] = "Guardado correctamente"
 
+    return render(request, 'core/form_usuario.html',datos)
 
-    return render(request, 'core/form_usuario.html',datos)                       
+def form_producto(request):
+    datos ={
+            'form': RegistrarProducto()
+    }
+    if request.method =='POST':
+        formulario = RegistrarProducto(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            datos['mensaje'] = "Guardado correctamente"
+
+    return render(request, 'core/form_producto.html',datos)
+                     
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
