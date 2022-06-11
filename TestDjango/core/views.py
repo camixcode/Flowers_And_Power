@@ -3,6 +3,8 @@ from sqlite3 import DateFromTicks
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
 from django.shortcuts import render
+
+from .forms import RegistrarUsuario
 from . models import Producto
 from .models import Usuario
 
@@ -96,7 +98,17 @@ def Tierra(request):
     return render(request, 'core/Tierra.html')     
 
 def form_usuario(request):
-    return render(request, 'core/form_usuario.html')                       
+    datos ={
+            'form': RegistrarUsuario()
+    }
+    if request.method =='POST':
+        formulario = RegistrarUsuario(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            datos['mensaje'] = "Guardado correctamente"
+
+
+    return render(request, 'core/form_usuario.html',datos)                       
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
