@@ -1,87 +1,95 @@
-h1,h2,h3,h4,h5, button, .amiibo-name{
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+.amiibo-name {
     font-family: 'Bitter', serif;
-
 }
 
+.content1 {
+    width: 25%;
+    height: 25%;
+}
 
-#navbar{
+#navbar {
     z-index: 1;
     text-decoration-color: black;
 }
 
-
-#imagen_nosotros{
-
-    margin-top: 50px;        
+#imagen_nosotros {
+    margin-top: 50px;
 }
-#nav{
+
+#nav {
     background-color: rgb(219, 26, 26);
     background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(131, 21, 21, 0.5) 20px, rgba(131, 21, 21, 0.5) 30px);
 }
 
-#texto{
-
+#texto {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 50px;
     font-family: "Consolas", monospace;
 }
 
-#parrafo{
+#parrafo {
     padding: 10px;
     text-align: center;
     font-size: 20px;
 }
-#comprastxt{
-  color: black;
+
+#comprastxt {
+    color: black;
 }
 
-#compras:hover{
- 
+#compras:hover {
     transform: scale(1.05);
-
-
 }
-.slide{
+
+.slide {
     margin: top 10px;
 }
-.slide img{
+
+.slide img {
     height: 65vh;
 }
-#imagenPerfil_izquierda{
+
+#imagenPerfil_izquierda {
     float: left;
     vertical-align: middle;
     margin-right: 30px;
     margin-left: 30px;
     margin-bottom: 10%;
-    width:400px;
-    height:300px;
+    width: 400px;
+    height: 300px;
 }
 
-#imagen{
+#imagen {
     margin-right: 10%;
     margin-left: 10%;
     margin-bottom: 2%;
     vertical-align: middle;
-    width:160px;
-    height:200px;
+    width: 160px;
+    height: 200px;
 }
 
-#textocardnosotros{
+#textocardnosotros {
     text-align: center;
     font-family: "Segoe UI";
-
 }
 
-#titulocard{
-
+#titulocard {
     text-align: center;
 }
-#ribbon{
+
+#ribbon {
     background-color: rgb(219, 26, 26);
     background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(131, 21, 21, 0.5) 25px, rgba(131, 21, 21, 0.5) 30px);
 }
-#ribbon::after{
+
+#ribbon::after {
     content: '';
     background-color: transparent;
     display: block;
@@ -92,91 +100,92 @@ h1,h2,h3,h4,h5, button, .amiibo-name{
     left: auto;
     margin-top: -40px;
 }
-#separator-ribbon{
+
+#separator-ribbon {
     width: 100%;
     overflow: hidden;
     position: relative;
     z-index: 2;
 }
-#separator-ribbon .content{
+
+#separator-ribbon .content {
     width: 150%;
     height: 80px;
     margin-left: -25%;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
 }
-#birthday{
+
+#birthday {
     background-color: rgb(219, 26, 26);
     position: relative;
     margin-top: -20px;
     z-index: 10;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#categorias{
+#categorias {
     display: grid;
     gap: 50px;
-
-    grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     margin-left: 100px;
     margin-right: 50px;
     margin-bottom: 50px;
 }
 
-#titulocategoria{
-
+#titulocategoria {
     margin-left: 200px;
     margin-right: 200px;
     margin-bottom: 50px;
     text-align: center;
 }
 
-#imagencategoria{
+#imagencategoria {
     vertical-align: middle;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-#titulocard{
-
+#titulocard {
     font-family: fantasy;
-
-
 }
 
-#birthday img{
+#birthday img {
     position: relative;
     margin-top: -30px;
 }
 
-#games{
-    background: rgb(255,255,255);
-    background:  linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(130, 231, 181) 57%);
+#games {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgb(130, 231, 181) 57%);
     background-repeat: repeat-x;
     background-size: 75%;
     margin-top: -20px;
 }
 
-.card-border{
+.card-border {
     border: solid 10px white;
     border-radius: 20px;
     overflow: hidden;
     transition: all ease-out 0.2s;
 }
-.card-border:hover{
+
+.card-border:hover {
     transform: scale(1.05);
 }
 
-.text-shadow{
-    text-shadow: 0 3px 3px rgba(0,0,0,0.6);
+.text-shadow {
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
 }
-#separator-amiibos{
+
+#separator-amiibos {
     width: 100%;
     overflow: hidden;
     position: relative;
     z-index: 2;
 }
-#separator-amiibos .content{
+
+#separator-amiibos .content {
     background: url(../img/bg-03.png);
     width: 110%;
     height: 100px;
@@ -185,27 +194,28 @@ h1,h2,h3,h4,h5, button, .amiibo-name{
     border-top-right-radius: 50%;
 }
 
-#separator-amiibos-footer{
+#separator-amiibos-footer {
     height: 20vw;
 }
 
-
-#amiibos{
-    background: url(../img/bg-01.png),url(../img/bg-03.png);
+#amiibos {
+    background: url(../img/bg-01.png), url(../img/bg-03.png);
     background-repeat: no-repeat, repeat;
     background-position: bottom center, center center;
     background-size: 100%, auto;
 }
-.amiibo{
+
+.amiibo {
     cursor: pointer;
     transition: all ease-out 0.2s;
 }
-.amiibo:hover{
+
+.amiibo:hover {
     transform: scale(1.05);
 }
 
-.amiibo-name{
-    background-color: rgba(0,0,0,0.4);
+.amiibo-name {
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     display: inline-block;
     margin: 0 auto;
@@ -213,94 +223,84 @@ h1,h2,h3,h4,h5, button, .amiibo-name{
     border-radius: 15px;
 }
 
-#play{   
+#play {
     background: url(../img/bg-04.png);
     background-color: rgb(255, 255, 219);
     background-size: 40px 40px;
 }
 
-#footer{
+#footer {
     background: url(../img/bg-04.png);
     background-color: rgb(224, 144, 24);
     background-size: 50px 50px;
     width: 100%;
 }
 
-
-
-#body{
+#body {
     background-color: aquamarine;
-    
 }
 
-
-
-#card{
-    border :solid 5px #016787;
+#card {
+    border: solid 5px #016787;
     margin-top: 50px;
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
 }
 
-#cardid{
+#cardid {
     text-align: left;
     margin-left: 150px;
     line-height: 30px;
 }
 
-#btnCrearUsuario{
-
+#btnCrearUsuario {
     margin-left: 240px;
 }
 
-#textoseg{
-
+#textoseg {
     font-family: "Consolas", monospace;
-
 }
 
-#carouselExampleFade{
-
-    height: 700px;
-}
-#imgCarrusel{
+#carouselExampleFade {
     height: 700px;
 }
 
-#divPerfil{
+#imgCarrusel {
+    height: 700px;
+}
+
+#divPerfil {
     background-color: #d7d7d7;
-    border:double;
+    border: double;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-#grillaCcs{
-display: grid;
-gap: 50px;
-
-    grid-template-columns: repeat(auto-fill,minmax(20rem,1fr));
-
+#grillaCcs {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
-
-#imagenSegui{
+#imagenSegui {
     width: 500px;
 }
+
 @media screen and (max-width:800px) {
-    #imagenSegui{
+    #imagenSegui {
         width: 100%;
     }
 }
+
 @media screen and (min-width:1200px) {
-    #imagenSegui{
+    #imagenSegui {
         width: 200%;
     }
 }
 
-
 @media screen and (max-width:1000px) {
-    #mapa{
+    #mapa {
         width: 330px;
         height: 330px;
     }

@@ -72,6 +72,7 @@ def InicioSesion1(request):
     return render(request, 'core/InicioSesion1.html')        
 
 def listado_producto(request):
+    
     return render(request, 'core/listado_producto.html')    
 
 def Macetero(request):
@@ -87,7 +88,11 @@ def PerfilProducto(request):
     return render(request, 'core/PerfilProducto.html')      
 
 def Producto1(request):
-    return render(request, 'core/Producto1.html')      
+    productos = Producto.objects.all()
+    datos = {
+        'productos': productos
+    } 
+    return render(request, 'core/Producto1.html', datos)      
 
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
