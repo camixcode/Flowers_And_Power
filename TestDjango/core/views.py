@@ -65,7 +65,6 @@ def F_Crear_Cuenta(request):
             formulario.save()
             datos['mensaje'] = "Guardado correctamente"
 
-
     return render(request, 'core/F_Crear_Cuenta.html',datos)
 
 def form_mod_usuario(request):
