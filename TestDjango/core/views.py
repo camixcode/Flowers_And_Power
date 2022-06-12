@@ -63,7 +63,9 @@ def F_Crear_Cuenta(request):
         formulario = RegistrarUsuario(request.POST)
         if formulario.is_valid:
             formulario.save()
-            datos['mensaje'] = "Guardado correctamente"
+            datos['mensaje'] = "prueba nombre"
+            return render(request, 'core/index_home.html',datos)
+
 
     return render(request, 'core/F_Crear_Cuenta.html',datos)
 
