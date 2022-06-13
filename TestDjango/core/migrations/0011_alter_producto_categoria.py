@@ -9,10 +9,3 @@ class Migration(migrations.Migration):
         ('core', '0010_alter_producto_idproducto'),
     ]
 
-    operations = [
-        migrations.AlterField(
-            model_name='producto',
-            name='categoria',
-            field=models.CharField(max_length=50, verbose_name='categoria'),
-        ),
-    ]

@@ -9,7 +9,7 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombreCategoria
-    
+   
 
 class Producto(models.Model):
     idProducto = models.AutoField(primary_key=True, verbose_name='Id de producto')
@@ -21,7 +21,6 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombreProducto
-
 
 class Usuario(models.Model):
     idUsuario = models.AutoField(primary_key=True, verbose_name='Id de usuario')

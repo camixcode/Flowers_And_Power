@@ -8,11 +8,3 @@ class Migration(migrations.Migration):
     dependencies = [
         ('core', '0006_usuario'),
     ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='producto',
-            name='imagen',
-            field=models.ImageField(default=None, null=True, upload_to='producto'),
-        ),
-    ]

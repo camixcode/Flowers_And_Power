@@ -9,10 +9,4 @@ class Migration(migrations.Migration):
         ('core', '0009_usuario'),
     ]
 
-    operations = [
-        migrations.AlterField(
-            model_name='producto',
-            name='idProducto',
-            field=models.AutoField(primary_key=True, serialize=False, verbose_name='Id de producto'),
-        ),
-    ]
+

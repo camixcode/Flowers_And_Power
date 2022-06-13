@@ -9,15 +9,3 @@ class Migration(migrations.Migration):
         ('core', '0008_alter_usuario_idusuario'),
     ]
 
-    operations = [
-        migrations.CreateModel(
-            name='Usuario',
-            fields=[
-                ('idUsuario', models.AutoField(primary_key=True, serialize=False, verbose_name='Id de usuario')),
-                ('nombreUsuario', models.CharField(max_length=50, verbose_name='Nombre de usuario')),
-                ('nombres', models.CharField(max_length=50, verbose_name='Nombres')),
-                ('apellidos', models.CharField(max_length=50, verbose_name='apellidos')),
-                ('contrasena', models.CharField(max_length=50, verbose_name='contrasena')),
-            ],
-        ),
-    ]

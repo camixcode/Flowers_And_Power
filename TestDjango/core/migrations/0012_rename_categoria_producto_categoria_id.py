@@ -9,10 +9,4 @@ class Migration(migrations.Migration):
         ('core', '0011_alter_producto_categoria'),
     ]
 
-    operations = [
-        migrations.RenameField(
-            model_name='producto',
-            old_name='categoria',
-            new_name='categoria_id',
-        ),
-    ]
+
