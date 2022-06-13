@@ -101,7 +101,10 @@ def Tierra(request):
     return render(request, 'core/Tierra.html')     
 
 def form_usuario(request):
-    return render(request, 'core/form_usuario.html')                       
+    return render(request, 'core/form_usuario.html')        
+
+def form_producto(request):
+    return render(request, 'core/form_producto.html')                     
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
