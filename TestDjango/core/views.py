@@ -36,24 +36,24 @@ def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = producto.objects.get (id=producto_id)
     carrito.agregar(producto)
-    return redirect("core: Producto")
+    return redirect("Producto")
 
 def eliminar_producto ( request, producto_id):
     carrito = Carrito(request)
     producto = producto.objects.get (id=producto_id)
     carrito.eliminar(producto)
-    return redirect("core: Producto")
+    return redirect("Producto")
 
 def restar_producto ( request, producto_id):
     carrito = Carrito(request)
     producto = producto.objects.get (id=producto_id)
     carrito.restar(producto)
-    return redirect("core: Producto") 
+    return redirect("Producto") 
 
 def limpiar_carrito ( request, producto_id):
     carrito = Carrito (request)   
     carrito.limpiar()
-    return redirect("core: Producto") 
+    return redirect("Producto") 
 
 
 def usuario(request):

@@ -17,12 +17,12 @@
             </tr>
         </thead>
         <tbody>
-            {% id request.session.carrito.items %} {% for key, value in request.session.carrito.items%}
+            {% if request.session.carrito.items %} {% for key, value in request.session.carrito.items%}
             <tr>
                 <td>{{value.nombreProducto}}</td>
                 <td>{{value.precioProducto}} </td>
                 <td>{{value.acumulado}}
-                    <a href="{% url 'add' producto_id %}" class="badge btn btn-dark badge-dark"> + </a>
+                    <a href="{% url 'agregar_producto' producto_id %}" class="badge btn btn-dark badge-dark"> + </a>
                     <a href="{% url 'sub' producto_id %}" class="badge btn btn-dark badge-dark"> + </a>
                 </td>
             </tr>
@@ -43,7 +43,7 @@
 </div>
 <div class="row text-center">
     <div class="col-6">
-        <a href="{% url  'cls'%}" class="btn btn-danger">Limpiar</a>
+        <a href="{% url 'cls' %}" class="btn btn-danger">Limpiar</a>
     </div>
     <div class="col-6">
         <a href="#" class="btn btn-succes">Guardar</a>
