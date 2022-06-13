@@ -22,7 +22,7 @@
                 <td>{{value.nombreProducto}}</td>
                 <td>{{value.precioProducto}} </td>
                 <td>{{value.acumulado}}
-                    <a href="{% url 'Add' producto_id %}" class="badge btn btn-dark badge-dark"> + </a>
+                    <a href="{% url 'Add' producto.id %}" class="badge btn btn-dark badge-dark"> + </a>
                     <a href="{% url 'sub' producto_id %}" class="badge btn btn-dark badge-dark"> + </a>
                 </td>
             </tr>

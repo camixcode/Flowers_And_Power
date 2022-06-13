@@ -53,7 +53,7 @@ def restar_producto ( request, producto_id):
 def limpiar_carrito ( request, producto_id):
     carrito = Carrito (request)   
     carrito.limpiar()
-    return redirect("Producto") 
+    return redirect("Producto.html") 
 
 
 def usuario(request):

@@ -15,7 +15,7 @@ class Carrito:
             self.carrito = carrito
 
 
-def agregar (self, producto):
+def agregar_producto  (self, producto):
     id = str(producto.id)
     if id not in self.carrito.keys():
         self.carrito[id] = {
