@@ -154,7 +154,8 @@
                             <!---<h5 class="card-title ">{{pr.idProducto}}</h5>-->
                             <p class="card-text "> Nombre de Producto: <br>{{pr.nombreProducto}}</p>
                             <p class="card-text "> Precio: <br>${{pr.precioProducto}}</p>
-                            <center> <a href="{% url 'add' producto.id %}" class="btn btn-primary">Añair a Carrito</a></center>
+                            <center>
+                                <a href="{% url 'agregar_producto' producto_id %} " class="btn btn-primary ">Añair a Carrito</a></center>
                         </div>
                     </div>
                 </div>
@@ -162,8 +163,8 @@
             </div>
 
         </div>
-        <div class="col-4">
-            {% include "BCarrito.html" %}
+        <div class="col-4 ">
+            {% include "BCarrito.html " %}
         </div>
     </div>
     {%endblock%}
@@ -252,8 +253,8 @@
 
 
     <script>
-        $("#modaldesconnexionb ").on('click', function() {
-            $("#modaldesconnexion ").modal('show');
+        $("#modaldesconnexionb ").on('click ', function() {
+            $("#modaldesconnexion ").modal('show ');
         });
     </script>
 </body>
