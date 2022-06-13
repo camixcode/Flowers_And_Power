@@ -11,8 +11,8 @@ from .views import Arbusto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_
 
 
 urlpatterns = [
-    path('',home , name="Home"),
-    path('index_home', index_home, name="index_home"),
+    path('home1',home , name="Home"),
+    path('', index_home, name="index_home"),
     path('Arbusto/', Arbusto, name="Arbusto"),
     path('home/',index_homeOG , name="home"),
     path('Contacto/', Contacto, name="Contacto"),

@@ -3,8 +3,6 @@ from sqlite3 import DateFromTicks
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
 from django.shortcuts import render
-
-from .forms import RegistrarProducto, RegistrarUsuario
 from . models import Producto
 from .models import Usuario
 
@@ -56,18 +54,7 @@ def Categoria1(request):
     return render(request, 'core/Categoria1.html')
 
 def F_Crear_Cuenta(request):
-    datos ={
-            'form': RegistrarUsuario()
-    }
-    if request.method =='POST':
-        formulario = RegistrarUsuario(request.POST)
-        if formulario.is_valid:
-            formulario.save()
-            datos['mensaje'] = "prueba nombre"
-            return render(request, 'core/index_home.html',datos)
-
-
-    return render(request, 'core/F_Crear_Cuenta.html',datos)
+    return render(request, 'core/F_Crear_Cuenta.html')
 
 def form_mod_usuario(request):
     return render(request, 'core/form_mod_usuario.html')
@@ -85,6 +72,7 @@ def InicioSesion1(request):
     return render(request, 'core/InicioSesion1.html')        
 
 def listado_producto(request):
+    
     return render(request, 'core/listado_producto.html')    
 
 def Macetero(request):
@@ -100,7 +88,11 @@ def PerfilProducto(request):
     return render(request, 'core/PerfilProducto.html')      
 
 def Producto1(request):
-    return render(request, 'core/Producto1.html')      
+    productos = Producto.objects.all()
+    datos = {
+        'productos': productos
+    } 
+    return render(request, 'core/Producto1.html', datos)      
 
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
@@ -109,29 +101,7 @@ def Tierra(request):
     return render(request, 'core/Tierra.html')     
 
 def form_usuario(request):
-    datos ={
-            'form': RegistrarUsuario()
-    }
-    if request.method =='POST':
-        formulario = RegistrarUsuario(request.POST)
-        if formulario.is_valid:
-            formulario.save()
-            datos['mensaje'] = "Guardado correctamente"
-
-    return render(request, 'core/form_usuario.html',datos)
-
-def form_producto(request):
-    datos ={
-            'form': RegistrarProducto()
-    }
-    if request.method =='POST':
-        formulario = RegistrarProducto(request.POST)
-        if formulario.is_valid:
-            formulario.save()
-            datos['mensaje'] = "Guardado correctamente"
-
-    return render(request, 'core/form_producto.html',datos)
-                     
+    return render(request, 'core/form_usuario.html')                       
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
