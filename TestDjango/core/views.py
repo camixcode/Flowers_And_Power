@@ -1,8 +1,14 @@
+from itertools import product
 from re import U
 from sqlite3 import DateFromTicks
+from urllib import request
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+from core.Carrito import Carrito
+
+
 from . models import Producto
 from .models import Usuario
 
@@ -15,6 +21,39 @@ def home(request):
         "nombre": "diego araya"
     }  
     return render(request, 'core/home.html', datos)
+
+
+
+
+def Producto1(request):
+    productos = Producto.objects.all()
+    datos = {
+        'productos': productos
+    } 
+    return render(request, 'core/Producto1.html', datos)  
+
+def agregar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = producto.objects.get (id=producto_id)
+    carrito.agregar(producto)
+    return redirect("core: Producto")
+
+def eliminar_producto ( request, producto_id):
+    carrito = Carrito(request)
+    producto = producto.objects.get (id=producto_id)
+    carrito.eliminar(producto)
+    return redirect("core: Producto")
+
+def restar_producto ( request, producto_id):
+    carrito = Carrito(request)
+    producto = producto.objects.get (id=producto_id)
+    carrito.restar(producto)
+    return redirect("core: Producto") 
+
+def limpiar_carrito ( request, producto_id):
+    carrito = Carrito (request)   
+    carrito.limpiar()
+    return redirect("core: Producto") 
 
 
 def usuario(request):
@@ -87,12 +126,7 @@ def Paypal(request):
 def PerfilProducto(request):
     return render(request, 'core/PerfilProducto.html')      
 
-def Producto1(request):
-    productos = Producto.objects.all()
-    datos = {
-        'productos': productos
-    } 
-    return render(request, 'core/Producto1.html', datos)      
+  
 
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
