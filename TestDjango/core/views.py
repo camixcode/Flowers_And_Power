@@ -15,11 +15,13 @@ from core.Carrito import Carrito
 
 from . models import Producto
 from .models import Usuario
+from core.usuario import Usuario as PU
 
 
 # Create your views here.
 def home(request):
     productos = Producto.objects.all()
+    
     datos = {
         'productos': productos,
         "nombre": "diego araya"
@@ -72,6 +74,7 @@ def usuario(request):
         print(contrasena)
         try: 
             usu=Usuario.objects.get(nombreUsuario=usuario)
+            print(usu)
         except:
             datos = {
                     'error': 'usuario',
@@ -82,10 +85,15 @@ def usuario(request):
             print("Detecto")
             #cont=usu.filter(contrasena=contrasena)
             if str(usu.contrasena) == str(contrasena):
-                datos = {
-
-                    'NombreUsuario' : usu.nombreUsuario
-                }
+                permenencia = PU(request)
+                permenencia.agregar(usu)
+                print(request.session["usuario"].items())
+                for key, value in request.session ["usuario"].items():
+                    datos = {
+                        'idUsuario' : value["idUsuario"],
+                        'NombreUsuario' : value["nombreUsuario"]
+                    }
+    
                 return render(request, 'core/index_home.html',datos)       
             else:
                 datos = {
@@ -98,7 +106,7 @@ def usuario(request):
                     'error': 'usuario',
                     "mensaje": "error usuario no valido"
                 }  
-            return redirect("index_home")  
+            return redirect("index_home",)  
 
 
 
@@ -148,7 +156,12 @@ def Macetero(request):
     return render(request, 'core/Macetero.html')    
 
 def Nosotros(request):
-    return render(request, 'core/Nosotros.html')                
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/Nosotros.html',datos)                
 
 def Paypal(request):
     return render(request, 'core/Paypal.html')   
@@ -159,6 +172,7 @@ def PerfilProducto(request):
   
 
 def Seguimiento(request):
+
     return render(request, 'core/Seguimiento.html')      
 
 def Tierra(request):
