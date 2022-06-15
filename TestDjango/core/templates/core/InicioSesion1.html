@@ -37,7 +37,8 @@
 
     <!---Formulario de Ingreso Session-->
     <div class="overlay">
-        <form action="login" method="post">
+        <form action="http://127.0.0.1:8000/loginUsuario" method="post">
+            {% csrf_token %}
             <div class="con">
                 <header class="head-form">
                     <h2>INICIO DE SESIÓN</h2>
@@ -47,25 +48,29 @@
                     <span class="input-item">
              <i class="fa fa-user-circle"></i>
            </span>
-                    <input value="NombreUsuario" class="form-input" id="txt-input" type="text" placeholder="Usuario" required>
+                    <input class="form-input"  type="text" placeholder="Usuario" id="nombreUsuario" name="nombreUsuario" required>
                     <br>
                     <span class="input-item">
           <i class="fa fa-key"></i>
          </span>
-                    <input class="form-input" type="password" placeholder="Contraseña" id="pwd" name="contrasena" required>
+                    <input class="form-input" type="password" placeholder="Contraseña" id="contrasena" name="contrasena" required>
                     <span>
           <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
        </span>
                     <br><br> <br>
-                    <button class="log-in" id="log"  > Inicio de sesión </button>
-                    <br> <br>
+                    <input type="submit" class="btn btn-danger" value="Iniciar sesion">
+                    <br><br>
                 </div>
                 <div class="other">
                     <button class="btn submits frgt-pass">Olvidaste tu contraseña</button>
-
                     <button class="btn submits sign-up">Registrar
         <i class="fa fa-user-plus" aria-hidden="true"></i>
         </button>
+        {% if error == 'usuario' %} 
+        <div class="alert alert-success" role="alert">
+            {{mensaje}}
+        </div>
+        {%endif%}
                 </div>
             </div>
         </form>

@@ -22,7 +22,7 @@ urlpatterns = [
     path('form_mod_usuario/', form_mod_usuario, name="form_mod_usuario"),
     path('form_usuario/', form_usuario, name="form_usuario"),
     path('form_producto/', form_producto, name="form_producto"),
-    path('login',usuario),
+    path('loginUsuario',usuario),
     path('login',Carrito),
     path('HistoricoCompra/', HistoricoCompra, name="HistoricoCompra"),
     #path('Home/', index_home, name="Home"),

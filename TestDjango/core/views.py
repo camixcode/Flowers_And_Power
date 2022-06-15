@@ -1,7 +1,10 @@
+from ast import Try
 from itertools import product
 from re import U
 from sqlite3 import DateFromTicks
+from tokenize import Triple
 from urllib import request
+from warnings import catch_warnings
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
 from django.shortcuts import redirect, render
@@ -58,28 +61,44 @@ def limpiar_carrito(request):
 
 
 def usuario(request):
-    if request.method == 'post':
-        usuario= request.post['nombreUsuario']
-        contrasena= request.post['contrasena']
-        usu=Usuario.objects.get(nombreUsuario=usuario)
+    print("Detecto request()", request)
+    print("Detecto request()", request.method)
+    if request.method == 'POST':
+        print("Detecto llamda post")
+        print(request.POST)
+        usuario= request.POST['nombreUsuario']
+        print(usuario)
+        contrasena= request.POST['contrasena']
+        print(contrasena)
+        try: 
+            usu=Usuario.objects.get(nombreUsuario=usuario)
+        except:
+            datos = {
+                    'error': 'usuario',
+                    "mensaje": "error usuario no valido"
+                }  
+            return render(request, 'core/InicioSesion1.html',datos)  
         if usu: 
+            print("Detecto")
             #cont=usu.filter(contrasena=contrasena)
             if str(usu.contrasena) == str(contrasena):
-                return render(request, 'core/home.html', usu)        
+                datos = {
+
+                    'NombreUsuario' : usu.nombreUsuario
+                }
+                return render(request, 'core/index_home.html',datos)       
             else:
                 datos = {
                     'error': 'usuario',
                     "mensaje": "error contrasena incorrecta"
-                }  
-           
-            return render(request, 'core/F_Crear_Cuenta.html',datos) 
-
+                }            
+            return render(request, 'core/InicioSesion1.html',datos) 
         else:
             datos = {
                     'error': 'usuario',
                     "mensaje": "error usuario no valido"
                 }  
-            return render(request, 'core/F_Crear_Cuenta.html',datos) 
+            return redirect("index_home")  
 
 
 
@@ -151,9 +170,7 @@ def form_usuario(request):
     }
 
     if request.method == 'POST':
-
         formmulario = RegistrarUsuario(request.POST)
-
         if formmulario.is_valid:
             formmulario.save()
             datos['mensaje'] = "Guardados Correctamente"

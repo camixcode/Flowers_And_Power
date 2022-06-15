@@ -94,47 +94,7 @@
 <body>
 
 
-    <!--- Recorrido
-
-    {% for pr in productos %}
-
-    <body>
-        <div class="content1">
-            <img src="{{pr.imagen.url}} " />
-        </div>
-
-
-        <div class=" card border-success mb-3 " style="max-width: 18rem; ">
-            <div class="col ">
-                <div class="card h-100">
-                    <img src="{{pr.imagen.url}} " alt="Logotipo" style="width:50%" class="mx-auto d-block">
-                    <div class="card-body ">
-                        <h5 class="card-title ">{{pr.idProducto}}</h5>
-                        <p class="card-text ">{{pr.nombreProducto}}</p>
-                        <p class="card-text ">${{pr.precioProducto}}</p>
-                    </div>
-                    <div class="card-footer ">
-                        <small class="text-muted ">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class=" card border-success mb-3 " style="max-width: 18rem; ">
-            <div class="col ">
-                <div class="card h-100">
-                    <img src="{{pr.imagen.url}} " alt="Logotipo" style="width:50%" class="mx-auto d-block">
-                    <div class="card-body ">
-                        <h5 class="card-title ">{{pr.idProducto}}</h5>
-                        <p class="card-text ">{{pr.nombreProducto}}</p>
-                        <p class="card-text ">${{pr.precioProducto}}</p>
-                    </div>
-                    <div class="card-footer ">
-                        <small class="text-muted ">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}-->
+  
     <div class="container">
         <div class="row">
             <div class="col-12 aling-self-center">
@@ -149,7 +109,17 @@
                 {%for pr in productos %}
                 <div class="col-md-3 col-sm-12 col-lg-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{pr.imagen.url}} " style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} ">
+                        {% if pr.imagen == '' %} 
+                        <img src="{% static 'core/img/Flowers.png' %}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} ">
+                            <div class="card-body">
+                                <!---<h5 class="card-title ">{{pr.idProducto}}</h5>-->
+                                <p class="card-text "> Nombre de Producto: <br>{{pr.nombreProducto}}</p>
+                                <p class="card-text "> Precio: <br>${{pr.precioProducto}}</p>
+                                <a href=" http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}} " class="btn btn-primary">
+                                     Agregar a Carrito</a>
+                            </div>
+                        {%else%}
+                        <img src="{{pr.imagen.url}}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} ">
                         <div class="card-body">
                             <!---<h5 class="card-title ">{{pr.idProducto}}</h5>-->
                             <p class="card-text "> Nombre de Producto: <br>{{pr.nombreProducto}}</p>
@@ -157,6 +127,7 @@
                             <a href=" http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}} " class="btn btn-primary">
                                  Agregar a Carrito</a>
                         </div>
+                        {%endif%} 
                     </div>
                 </div>
                 {% endfor %}
