@@ -7,7 +7,7 @@ from core.Carrito import Carrito
 
 
 
-from .views import Arbusto, agregar_producto, eliminar_producto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1, limpiar_carrito,listado_producto, Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero,index_homeOG, form_usuario,restar_producto,usuario, form_producto, Carrito, form_mod_producto
+from .views import Arbusto, agregar_producto, eliminar_producto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1, limpiar_carrito,listado_producto, Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero,index_homeOG, form_usuario,restar_producto,usuario, form_producto, Carrito, form_mod_producto,form_borrar_producto
 # ,NavBar
 
 
@@ -40,7 +40,8 @@ urlpatterns = [
     path('eliminar/<int:producto_id>/', eliminar_producto, name="del"),
     path('restar/<int:producto_id>/', restar_producto, name="sub"),
     path('limpiar/', limpiar_carrito, name="cls"),
-     path('form_mod_producto/<id>/', form_mod_producto, name="form_mod_producto"),
+    path('form_mod_producto/<id>/', form_mod_producto, name="form_mod_producto"),
+    path('form_borrar_producto/<id>/',form_borrar_producto, name="form_borrar_producto")
 ]
 
 

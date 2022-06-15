@@ -1,5 +1,6 @@
 from ast import Try
 from itertools import product
+from math import prod
 from re import U
 from sqlite3 import DateFromTicks
 from tokenize import Triple
@@ -150,6 +151,16 @@ def form_mod_usuario(request):
             'NombreUsuario' : value["nombreUsuario"]
         }
     return render(request, 'core/form_mod_usuario.html',datos)
+
+def form_borrar_producto(request,id):
+    producto = Producto.objects.get(idProducto=id)
+    producto.delete()
+    productos =Producto.objects.all()
+    
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/listado_producto.html',datos)
 
 def HistoricoCompra(request):
     for key, value in request.session ["usuario"].items():
