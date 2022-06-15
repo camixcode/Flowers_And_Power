@@ -13,4 +13,4 @@ class RegistrarProducto(ModelForm):
 
     class Meta:
         model = Producto
-        fields =['idProducto','nombreProducto','descripcionProducto','precioProducto','imagen','categoria']
+        fields =['idProducto','nombreProducto','descripcionProducto','precioProducto','categoria']

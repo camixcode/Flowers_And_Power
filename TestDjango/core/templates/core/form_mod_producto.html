@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <title>Creación de cuenta</title>
+    <title>Modificar Producto</title>
 </head>
 <!--<h1>nav FLOWERSANDPOWER</h1>-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-white">
@@ -103,7 +103,7 @@
                     <span class="iconify" aria-hidden="true"><i class="fas fa-home"></i></span>
                 </div>
                 <div class="col-sm-9 pl-sm-0">
-                    <h3 class="font-weight-light">Registrar Producto</h3>
+                    <h3 class="font-weight-light">Modificar Producto</h3>
                     <p id="description">Los Campos con (*) Son Obligatorios.</p>
                 </div>
             </div>
@@ -113,7 +113,7 @@
 
                 <div class="form-row">
                     <div class="col-12 col-md-6 mb-2">
-                        {{form}}
+                        {{form.as_table}}
 
                     </div>
     
@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-                <input type="submit" class="btn btn-danger" value="enviar">
+                <input type="submit" class="btn btn-danger" id="enviar" value="Modificar">
                 <input type="reset" class="btn btn-danger" value="limpiar">
                 <div id="error" class="alert alert-danger" role="alert"></div>
                 <div class="alert alert-success" role="alert">
