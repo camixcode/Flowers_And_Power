@@ -5,6 +5,7 @@ from urllib import request
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
 from django.shortcuts import redirect, render
+from core.forms import RegistrarProducto, RegistrarUsuario
 
 from core.Carrito import Carrito
 
@@ -108,11 +109,21 @@ def index_homeOG(request):
     return render(request, 'core/index_homeOG.html')    
 
 def InicioSesion1(request):
-    return render(request, 'core/InicioSesion1.html')        
+    dict={}
+    if request.method == 'POST':
+        username= request.POST["nomUsuario"]
+        password = request.POST["contrasenaUsuario"]
+        dict = {
+            "nombre": username
+        }
+    return render(request, 'core/InicioSesion1.html',dict)             
 
 def listado_producto(request):
+    productos =Producto.objects.all()
+    datos={
+         'productos':productos}
     
-    return render(request, 'core/listado_producto.html')    
+    return render(request, 'core/listado_producto.html',datos)   
 
 def Macetero(request):
     return render(request, 'core/Macetero.html')    
@@ -135,10 +146,69 @@ def Tierra(request):
     return render(request, 'core/Tierra.html')     
 
 def form_usuario(request):
-    return render(request, 'core/form_usuario.html')        
+    datos = {
+        'form': RegistrarUsuario()
+    }
+
+    if request.method == 'POST':
+
+        formmulario = RegistrarUsuario(request.POST)
+
+        if formmulario.is_valid:
+            formmulario.save()
+            datos['mensaje'] = "Guardados Correctamente"
+
+    return render(request, 'core/form_usuario.html',datos)          
 
 def form_producto(request):
-    return render(request, 'core/form_producto.html')                     
+    datos = {
+        'form': RegistrarProducto()
+    }
+
+    if request.method == 'POST':
+
+        formmulario = RegistrarProducto(request.POST)
+
+        if formmulario.is_valid:
+            formmulario.save()
+            datos['mensaje'] = "Guardados Correctamente"
+    return render(request, 'core/form_producto.html',datos)     
+
+def form_mod_producto(request):
+    return render(request, 'core/form_producto.html')                      
+
+
+def F_Crear_Cuenta(request):
+    datos = {
+        'form': RegistrarUsuario()
+    }
+
+    if request.method == 'POST':
+
+        formmulario = RegistrarUsuario(request.POST)
+
+        if formmulario.is_valid:
+            formmulario.save()
+            datos['mensaje'] = "Guardados Correctamente"
+
+    return render(request, 'core/F_Crear_Cuenta.html',datos)
+
+def form_mod_usuario(request):
+    return render(request, 'core/form_mod_usuario.html')
+
+def form_mod_producto(request,id):
+    producto =Producto.objects.get(idProducto = id)
+    datos={
+        'form': RegistrarProducto(instance=producto)
+    }
+    if request.method == 'POST':
+        formulario = RegistrarProducto(data=request.POST, instance= producto)
+        if formulario.is_valid:
+            formulario.save()
+
+    return render(request, 'core/form_mod_producto.html',datos)
+
+
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
