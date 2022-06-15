@@ -112,25 +112,60 @@ def usuario(request):
 
 
 def Arbusto(request):
-    return render(request, 'core/Arbusto.html')
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/Arbusto.html',datos)
 
 def Contacto(request):
-    return render(request, 'core/Contacto.html')
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/Contacto.html',datos)
 
 def Categoria1(request):
-    return render(request, 'core/Categoria1.html')
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/Categoria1.html',datos)
 
 def F_Crear_Cuenta(request):
-    return render(request, 'core/F_Crear_Cuenta.html')
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/F_Crear_Cuenta.html',datos)
 
 def form_mod_usuario(request):
-    return render(request, 'core/form_mod_usuario.html')
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/form_mod_usuario.html',datos)
 
 def HistoricoCompra(request):
-    return render(request, 'core/HistoricoCompra.html')
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/HistoricoCompra.html',datos)
 
 def index_home(request):
-    return render(request, 'core/index_home.html')    
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/index_home.html',datos)    
 
 def index_homeOG(request):
     return render(request, 'core/index_homeOG.html')    
@@ -147,13 +182,22 @@ def InicioSesion1(request):
 
 def listado_producto(request):
     productos =Producto.objects.all()
-    datos={
-         'productos':productos}
-    
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"],
+            'productos':productos
+        }
     return render(request, 'core/listado_producto.html',datos)   
 
 def Macetero(request):
-    return render(request, 'core/Macetero.html')    
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    
+    return render(request, 'core/Macetero.html',datos)    
 
 def Nosotros(request):
     for key, value in request.session ["usuario"].items():
@@ -167,16 +211,30 @@ def Paypal(request):
     return render(request, 'core/Paypal.html')   
 
 def PerfilProducto(request):
-    return render(request, 'core/PerfilProducto.html')      
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/PerfilProducto.html',datos)      
 
   
 
 def Seguimiento(request):
-
-    return render(request, 'core/Seguimiento.html')      
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/Seguimiento.html',datos)      
 
 def Tierra(request):
-    return render(request, 'core/Tierra.html')     
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"]
+        }
+    return render(request, 'core/Tierra.html',datos)     
 
 def form_usuario(request):
     datos = {
@@ -192,9 +250,12 @@ def form_usuario(request):
     return render(request, 'core/form_usuario.html',datos)          
 
 def form_producto(request):
-    datos = {
-        'form': RegistrarProducto()
-    }
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"],
+            'form': RegistrarProducto()
+        }
 
     if request.method == 'POST':
 
