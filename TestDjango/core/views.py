@@ -33,10 +33,13 @@ def home(request):
 
 
 def Producto1(request):
-    productos = Producto.objects.all()
-    datos = {
-        'productos': productos
-    } 
+    productos =Producto.objects.all()
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"],
+            'productos':productos
+        }
     return render(request, 'core/Producto1.html', datos)  
 
 def agregar_producto(request, producto_id):
@@ -162,6 +165,16 @@ def form_borrar_producto(request,id):
     }
     return render(request, 'core/listado_producto.html',datos)
 
+def form_borrar_usuario(request,id):
+    usuario = Usuario.objects.get(idUsuario=id)
+    usuario.delete()
+    usuarios =Usuario.objects.all()
+    
+    datos = {
+        'usuarios':usuarios
+    }
+    return render(request, 'core/listado_usuario.html',datos)
+
 def HistoricoCompra(request):
     for key, value in request.session ["usuario"].items():
         datos = {
@@ -199,7 +212,17 @@ def listado_producto(request):
             'NombreUsuario' : value["nombreUsuario"],
             'productos':productos
         }
-    return render(request, 'core/listado_producto.html',datos)   
+    return render(request, 'core/listado_producto.html',datos) 
+
+def listado_usuario(request):
+    usuarios =Usuario.objects.all()
+    for key, value in request.session ["usuario"].items():
+        datos = {
+            'idUsuario' : value["idUsuario"],
+            'NombreUsuario' : value["nombreUsuario"],
+            'usuarios': usuarios
+        }
+    return render(request, 'core/listado_usuario.html',datos)   
 
 def Macetero(request):
     for key, value in request.session ["usuario"].items():
@@ -296,8 +319,17 @@ def F_Crear_Cuenta(request):
 
     return render(request, 'core/F_Crear_Cuenta.html',datos)
 
-def form_mod_usuario(request):
-    return render(request, 'core/form_mod_usuario.html')
+def form_mod_usuario(request,id):
+    usuario =Usuario.objects.get(idUsuario = id)
+    datos={
+        'form': RegistrarUsuario(instance=usuario)
+    }
+    if request.method == 'POST':
+        formulario = RegistrarUsuario(data=request.POST, instance= usuario)
+        if formulario.is_valid:
+            formulario.save()
+
+    return render(request, 'core/form_mod_usuario.html',datos)
 
 def form_mod_producto(request,id):
     producto =Producto.objects.get(idProducto = id)

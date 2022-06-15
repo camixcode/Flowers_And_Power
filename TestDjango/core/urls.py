@@ -7,7 +7,7 @@ from core.Carrito import Carrito
 
 
 
-from .views import Arbusto, agregar_producto, eliminar_producto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1, limpiar_carrito,listado_producto, Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero,index_homeOG, form_usuario,restar_producto,usuario, form_producto, Carrito, form_mod_producto,form_borrar_producto
+from .views import Arbusto, agregar_producto, eliminar_producto, home, Contacto, Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1, limpiar_carrito,listado_producto, Paypal,PerfilProducto,Producto1,Seguimiento,Tierra, Macetero,index_homeOG, form_usuario,restar_producto,usuario, form_producto, Carrito, form_mod_producto,form_borrar_producto , listado_usuario, form_borrar_usuario
 # ,NavBar
 
 
@@ -19,7 +19,7 @@ urlpatterns = [
     path('Contacto/', Contacto, name="Contacto"),
     path('Categoria1/', Categoria1, name="Categoria1"),
     path('F_Crear_Cuenta/', F_Crear_Cuenta, name="F_Crear_Cuenta"),
-    path('form_mod_usuario/', form_mod_usuario, name="form_mod_usuario"),
+    path('form_mod_usuario/<id>', form_mod_usuario, name="form_mod_usuario"),
     path('form_usuario/', form_usuario, name="form_usuario"),
     path('form_producto/', form_producto, name="form_producto"),
     path('loginUsuario',usuario),
@@ -28,6 +28,8 @@ urlpatterns = [
     #path('Home/', index_home, name="Home"),
     path('InicioSesion1/', InicioSesion1, name="InicioSesion1"),
     path('listado_producto/', listado_producto, name="listado_producto"),
+    path('listado_usuario/', listado_usuario, name="listado_usuario"),
+
     path('Macetero/', Macetero, name="Macetero"),
     path('Nosotros/', Nosotros, name="Nosotros"),
     path('Paypal/', Paypal, name="Paypal"),
@@ -41,7 +43,9 @@ urlpatterns = [
     path('restar/<int:producto_id>/', restar_producto, name="sub"),
     path('limpiar/', limpiar_carrito, name="cls"),
     path('form_mod_producto/<id>/', form_mod_producto, name="form_mod_producto"),
-    path('form_borrar_producto/<id>/',form_borrar_producto, name="form_borrar_producto")
+    path('form_borrar_producto/<id>/',form_borrar_producto, name="form_borrar_producto"),
+    path('form_borrar_usuario/<id>/',form_borrar_usuario, name="form_borrar_usuario"),
+
 ]
 
 
