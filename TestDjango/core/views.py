@@ -16,6 +16,8 @@ from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreatio
 from django.contrib.auth import authenticate, login
 from core.Carrito import Carrito
 from django.contrib import messages
+from django.contrib.auth.models import User 
+
 
 
 
@@ -121,7 +123,7 @@ def listado_producto(request):
     return render(request, 'core/listado_producto.html',datos) 
 
 def listado_usuario(request):
-    usuarios =Usuario.objects.all()
+    usuarios =User.objects.all()
     datos = {
         'usuarios': usuarios
     }
