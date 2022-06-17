@@ -44,9 +44,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cuenta Usuario</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'InicioSesion1' %}">Acceder</a></li>
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Acceder</a></li>
                             <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#modaldesconnexion" id="modaldesconnexionb">Desconectar Cuenta</a></li>
-                            <li><a class="dropdown-item" href="{% url 'F_Crear_Cuenta' %}">Crear Cuenta de Usuario</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registro' %}">Crear Cuenta de Usuario</a></li>
                             <li><a class="dropdown-item" href="{% url 'Seguimiento' %}">Seguimiento de Compra</a></li>
                             <li><a class="dropdown-item" href="{% url 'HistoricoCompra' %}">Historico de Compras</a></li>
                         </ul>
@@ -64,19 +64,35 @@
                     <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="{% url 'Nosotros'%}">Nosotros</a>
                     </li>
+                    {% if user.is_superuser %}
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Administración</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'listado_producto'%}">Administrar Productos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'listado_producto'%}">Administrar Productos</a>
+                            </li>
                             <li><a class="dropdown-item" href="{% url 'form_producto'%}">Crear Productos</a></li>
                             <li><a class="dropdown-item" href="{% url 'listado_usuario'%}">Listado Usuarios</a></li>
 
                         </ul>
                     </li>
+                    {% endif %}
                 </ul>
                 <br>
             </div>
-            <span class="badge bg-dark text-white ms-1 rounded-pill"><h6>Bienvenido usuario: {{NombreUsuario}}</h6></span>
+            {% if user.is_authenticated %}
+        
+                <a href="{% url 'logout' %}" style="margin-left: 20px;">cerrar sesion </a>
+                <a href="#" style="margin-left:  5px;" > / {{user.username}}</a>
+
+           
+            {% else %}
+           
+                <a href="{% url 'login' %}">iniciar sesion</a>
+          
+
+            {% endif %}
         </div>
     </nav>
 

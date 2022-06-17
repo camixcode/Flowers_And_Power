@@ -1,6 +1,8 @@
 from ast import Try
+from email import message
 from itertools import product
 from math import prod
+from pyexpat.errors import messages
 from re import U
 from sqlite3 import DateFromTicks
 from tokenize import Triple
@@ -8,15 +10,16 @@ from urllib import request
 from warnings import catch_warnings
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
+import django
 from django.shortcuts import redirect, render
-from core.forms import RegistrarProducto, RegistrarUsuario
-
+from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreationForm
+from django.contrib.auth import authenticate, login
 from core.Carrito import Carrito
+from django.contrib import messages
 
 
-from . models import Producto
-from .models import Usuario
-from core.usuario import Usuario as PU
+
+from . models import Producto,Usuario
 
 
 # Create your views here.
@@ -34,12 +37,9 @@ def home(request):
 
 def Producto1(request):
     productos =Producto.objects.all()
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"],
-            'productos':productos
-        }
+    datos = {
+        'productos':productos
+    }
     return render(request, 'core/Producto1.html', datos)  
 
 def agregar_producto(request, producto_id):
@@ -65,95 +65,21 @@ def limpiar_carrito(request):
     carrito.limpiar()
     return redirect("Producto") 
 
-
-def usuario(request):
-    print("Detecto request()", request)
-    print("Detecto request()", request.method)
-    if request.method == 'POST':
-        print("Detecto llamda post")
-        print(request.POST)
-        usuario= request.POST['nombreUsuario']
-        print(usuario)
-        contrasena= request.POST['contrasena']
-        print(contrasena)
-        try: 
-            usu=Usuario.objects.get(nombreUsuario=usuario)
-            print(usu)
-        except:
-            datos = {
-                    'error': 'usuario',
-                    "mensaje": "error usuario no valido"
-                }  
-            return render(request, 'core/InicioSesion1.html',datos)  
-        if usu: 
-            print("Detecto")
-            #cont=usu.filter(contrasena=contrasena)
-            if str(usu.contrasena) == str(contrasena):
-                permenencia = PU(request)
-                permenencia.agregar(usu)
-                print(request.session["usuario"].items())
-                for key, value in request.session ["usuario"].items():
-                    datos = {
-                        'idUsuario' : value["idUsuario"],
-                        'NombreUsuario' : value["nombreUsuario"]
-                    }
-    
-                return render(request, 'core/index_home.html',datos)       
-            else:
-                datos = {
-                    'error': 'usuario',
-                    "mensaje": "error contrasena incorrecta"
-                }            
-            return render(request, 'core/InicioSesion1.html',datos) 
-        else:
-            datos = {
-                    'error': 'usuario',
-                    "mensaje": "error usuario no valido"
-                }  
-            return redirect("index_home",)  
-
-
-
-
 def Arbusto(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/Arbusto.html',datos)
+    return render(request, 'core/Arbusto.html')
 
 def Contacto(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/Contacto.html',datos)
+    return render(request, 'core/Contacto.html')
 
 def Categoria1(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/Categoria1.html',datos)
+    return render(request, 'core/Categoria1.html')
 
 def F_Crear_Cuenta(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/F_Crear_Cuenta.html',datos)
+
+    return render(request, 'core/F_Crear_Cuenta.html')
 
 def form_mod_usuario(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/form_mod_usuario.html',datos)
+    return render(request, 'core/form_mod_usuario.html')
 
 def form_borrar_producto(request,id):
     producto = Producto.objects.get(idProducto=id)
@@ -176,100 +102,48 @@ def form_borrar_usuario(request,id):
     return render(request, 'core/listado_usuario.html',datos)
 
 def HistoricoCompra(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/HistoricoCompra.html',datos)
+    return render(request, 'core/HistoricoCompra.html')
 
 def index_home(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-        print(datos)
-    return render(request, 'core/index_home.html',datos)    
+    return render(request, 'core/index_home.html')    
 
 def index_homeOG(request):
     return render(request, 'core/index_homeOG.html')    
 
 def InicioSesion1(request):
-    dict={}
-    if request.method == 'POST':
-        username= request.POST["nomUsuario"]
-        password = request.POST["contrasenaUsuario"]
-        dict = {
-            "nombre": username
-        }
-    return render(request, 'core/InicioSesion1.html',dict)             
+    return render(request, 'core/InicioSesion1.html')             
 
 def listado_producto(request):
     productos =Producto.objects.all()
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"],
-            'productos':productos
-        }
+    datos = {
+        'productos':productos
+    }
     return render(request, 'core/listado_producto.html',datos) 
 
 def listado_usuario(request):
     usuarios =Usuario.objects.all()
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"],
-            'usuarios': usuarios
-        }
+    datos = {
+        'usuarios': usuarios
+    }
     return render(request, 'core/listado_usuario.html',datos)   
 
 def Macetero(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    
-    return render(request, 'core/Macetero.html',datos)    
+    return render(request, 'core/Macetero.html')    
 
 def Nosotros(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/Nosotros.html',datos)                
+    return render(request, 'core/Nosotros.html')                
 
 def Paypal(request):
     return render(request, 'core/Paypal.html')   
 
 def PerfilProducto(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/PerfilProducto.html',datos)      
-
-  
+    return render(request, 'core/PerfilProducto.html')      
 
 def Seguimiento(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/Seguimiento.html',datos)      
+    return render(request, 'core/Seguimiento.html')      
 
 def Tierra(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"]
-        }
-    return render(request, 'core/Tierra.html',datos)     
+    return render(request, 'core/Tierra.html')     
 
 def form_usuario(request):
     datos = {
@@ -285,13 +159,9 @@ def form_usuario(request):
     return render(request, 'core/form_usuario.html',datos)          
 
 def form_producto(request):
-    for key, value in request.session ["usuario"].items():
-        datos = {
-            'idUsuario' : value["idUsuario"],
-            'NombreUsuario' : value["nombreUsuario"],
-            'form': RegistrarProducto()
-        }
-
+    datos = {
+        'form': RegistrarProducto()
+    }
     if request.method == 'POST':
 
         formmulario = RegistrarProducto(request.POST)
@@ -345,6 +215,20 @@ def form_mod_producto(request,id):
     return render(request, 'core/form_mod_producto.html',datos)
 
 
+def registro (request):
+    data ={
+        'form':CustomerUserCreationForm
+    }
+    if request.method =='POST':
+        formulario = CustomerUserCreationForm(data= request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request,user)
+            messages.success(request,"Te has registrado correctamente")
+            return redirect(to="index_home")
+        data["form"] = formulario
+    return render(request, 'registration/registro.html',data)
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
