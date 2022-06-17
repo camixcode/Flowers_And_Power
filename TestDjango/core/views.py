@@ -189,6 +189,7 @@ def index_home(request):
             'idUsuario' : value["idUsuario"],
             'NombreUsuario' : value["nombreUsuario"]
         }
+        print(datos)
     return render(request, 'core/index_home.html',datos)    
 
 def index_homeOG(request):
