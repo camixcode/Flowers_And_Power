@@ -22,9 +22,9 @@
                 <td>{{value.nombre}}</td>
                 <td>{{value.acumulado}} </td>
                 <td>{{value.cantidad}}
-                    <a href="http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}}" class="badge btn btn-dark badge-dark "> + </a>
+                    <a href="http://127.0.0.1:8000/agregar_producto/{{value.producto_id}}" class="badge btn btn-dark badge-dark "> + </a>
 
-                    <a href="http://127.0.0.1:8000/restar/{{pr.idProducto}}" class="badge btn btn-dark badge-dark "> - </a>
+                    <a href="http://127.0.0.1:8000/restar/{{value.producto_id}}" class="badge btn btn-dark badge-dark "> - </a>
                 </td>
             </tr>
             {% endfor %} {%else%}
