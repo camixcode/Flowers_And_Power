@@ -1,21 +1,33 @@
+from ast import Try
+from email import message
 from itertools import product
+from math import prod
+from pyexpat.errors import messages
 from re import U
 from sqlite3 import DateFromTicks
+from tokenize import Triple
 from urllib import request
+from warnings import catch_warnings
 from xml.dom.minidom import Document
 from xml.parsers.expat import model
+import django
 from django.shortcuts import redirect, render
-
+from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreationForm
+from django.contrib.auth import authenticate, login
 from core.Carrito import Carrito
+from django.contrib import messages
+from django.contrib.auth.models import User 
 
 
-from . models import Producto
-from .models import Usuario
+
+
+from . models import Producto,Usuario
 
 
 # Create your views here.
 def home(request):
     productos = Producto.objects.all()
+    
     datos = {
         'productos': productos,
         "nombre": "diego araya"
@@ -26,62 +38,34 @@ def home(request):
 
 
 def Producto1(request):
-    productos = Producto.objects.all()
+    productos =Producto.objects.all()
     datos = {
-        'productos': productos
-    } 
+        'productos':productos
+    }
     return render(request, 'core/Producto1.html', datos)  
 
 def agregar_producto(request, producto_id):
     carrito = Carrito(request)
-    producto = producto.objects.get (id=producto_id)
-    carrito.agregar(producto)
+    producto = Producto.objects.get(idProducto=producto_id)
+    carrito.agregar_producto(producto)
     return redirect("Producto")
 
-def eliminar_producto ( request, producto_id):
+def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
-    producto = producto.objects.get (id=producto_id)
+    producto = Producto.objects.get(idProducto=producto_id)
     carrito.eliminar(producto)
     return redirect("Producto")
 
-def restar_producto ( request, producto_id):
+def restar_producto(request, producto_id):
     carrito = Carrito(request)
-    producto = producto.objects.get (id=producto_id)
+    producto = Producto.objects.get(idProducto=producto_id)
     carrito.restar(producto)
     return redirect("Producto") 
 
-def limpiar_carrito ( request, producto_id):
-    carrito = Carrito (request)   
+def limpiar_carrito(request):
+    carrito = Carrito(request)   
     carrito.limpiar()
-    return redirect("Producto.html") 
-
-
-def usuario(request):
-    if request.method == 'post':
-        usuario= request.post['nombreUsuario']
-        contrasena= request.post['contrasena']
-        usu=Usuario.objects.get(nombreUsuario=usuario)
-        if usu: 
-            #cont=usu.filter(contrasena=contrasena)
-            if str(usu.contrasena) == str(contrasena):
-                return render(request, 'core/home.html', usu)        
-            else:
-                datos = {
-                    'error': 'usuario',
-                    "mensaje": "error contrasena incorrecta"
-                }  
-           
-            return render(request, 'core/F_Crear_Cuenta.html',datos) 
-
-        else:
-            datos = {
-                    'error': 'usuario',
-                    "mensaje": "error usuario no valido"
-                }  
-            return render(request, 'core/F_Crear_Cuenta.html',datos) 
-
-
-
+    return redirect("Producto") 
 
 def Arbusto(request):
     return render(request, 'core/Arbusto.html')
@@ -93,10 +77,31 @@ def Categoria1(request):
     return render(request, 'core/Categoria1.html')
 
 def F_Crear_Cuenta(request):
+
     return render(request, 'core/F_Crear_Cuenta.html')
 
 def form_mod_usuario(request):
     return render(request, 'core/form_mod_usuario.html')
+
+def form_borrar_producto(request,id):
+    producto = Producto.objects.get(idProducto=id)
+    producto.delete()
+    productos =Producto.objects.all()
+    
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/listado_producto.html',datos)
+
+def form_borrar_usuario(request,id):
+    usuario = Usuario.objects.get(idUsuario=id)
+    usuario.delete()
+    usuarios =Usuario.objects.all()
+    
+    datos = {
+        'usuarios':usuarios
+    }
+    return render(request, 'core/listado_usuario.html',datos)
 
 def HistoricoCompra(request):
     return render(request, 'core/HistoricoCompra.html')
@@ -108,11 +113,21 @@ def index_homeOG(request):
     return render(request, 'core/index_homeOG.html')    
 
 def InicioSesion1(request):
-    return render(request, 'core/InicioSesion1.html')        
+    return render(request, 'core/InicioSesion1.html')             
 
 def listado_producto(request):
-    
-    return render(request, 'core/listado_producto.html')    
+    productos =Producto.objects.all()
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/listado_producto.html',datos) 
+
+def listado_usuario(request):
+    usuarios =User.objects.all()
+    datos = {
+        'usuarios': usuarios
+    }
+    return render(request, 'core/listado_usuario.html',datos)   
 
 def Macetero(request):
     return render(request, 'core/Macetero.html')    
@@ -126,8 +141,6 @@ def Paypal(request):
 def PerfilProducto(request):
     return render(request, 'core/PerfilProducto.html')      
 
-  
-
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
 
@@ -135,10 +148,89 @@ def Tierra(request):
     return render(request, 'core/Tierra.html')     
 
 def form_usuario(request):
-    return render(request, 'core/form_usuario.html')        
+    datos = {
+        'form': RegistrarUsuario()
+    }
+
+    if request.method == 'POST':
+        formmulario = RegistrarUsuario(request.POST)
+        if formmulario.is_valid:
+            formmulario.save()
+            datos['mensaje'] = "Guardados Correctamente"
+
+    return render(request, 'core/form_usuario.html',datos)          
 
 def form_producto(request):
-    return render(request, 'core/form_producto.html')                     
+    datos = {
+        'form': RegistrarProducto()
+    }
+    if request.method == 'POST':
+
+        formmulario = RegistrarProducto(request.POST)
+
+        if formmulario.is_valid:
+            formmulario.save()
+            datos['mensaje'] = "Guardados Correctamente"
+    return render(request, 'core/form_producto.html',datos)     
+
+def form_mod_producto(request):
+    return render(request, 'core/form_producto.html')                      
+
+
+def F_Crear_Cuenta(request):
+    datos = {
+        'form': RegistrarUsuario()
+    }
+
+    if request.method == 'POST':
+
+        formmulario = RegistrarUsuario(request.POST)
+
+        if formmulario.is_valid:
+            formmulario.save()
+            datos['mensaje'] = "Guardados Correctamente"
+
+    return render(request, 'core/F_Crear_Cuenta.html',datos)
+
+def form_mod_usuario(request,id):
+    usuario =Usuario.objects.get(idUsuario = id)
+    datos={
+        'form': RegistrarUsuario(instance=usuario)
+    }
+    if request.method == 'POST':
+        formulario = RegistrarUsuario(data=request.POST, instance= usuario)
+        if formulario.is_valid:
+            formulario.save()
+
+    return render(request, 'core/form_mod_usuario.html',datos)
+
+def form_mod_producto(request,id):
+    producto =Producto.objects.get(idProducto = id)
+    datos={
+        'form': RegistrarProducto(instance=producto)
+    }
+    if request.method == 'POST':
+        formulario = RegistrarProducto(data=request.POST, instance= producto)
+        if formulario.is_valid:
+            formulario.save()
+
+    return render(request, 'core/form_mod_producto.html',datos)
+
+
+def registro (request):
+    data ={
+        'form':CustomerUserCreationForm
+    }
+    if request.method =='POST':
+        formulario = CustomerUserCreationForm(data= request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request,user)
+            messages.success(request,"Te has registrado correctamente")
+            return redirect(to="index_home")
+        data["form"] = formulario
+    return render(request, 'registration/registro.html',data)
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
