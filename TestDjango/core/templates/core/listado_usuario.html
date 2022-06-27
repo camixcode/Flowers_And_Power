@@ -46,6 +46,7 @@
                                 <td>nombres</td>
                                 <td>apellidos</td>
                                 <td>Email</td>
+                                <td>Opciones</td>
                                 
                             </tr>
                             {% for usu in usuarios %}
@@ -54,7 +55,8 @@
                                 <td>{{usu.username}}</td>
                                 <td>{{usu.first_name}}</td>
                                 <td>{{usu.last_name}}</td> 
-                                <td>{{usu.email}}</td>                               
+                                <td>{{usu.email}}</td>   
+                                <td></td>                            
 
                             </tr>
                             {% endfor %}
