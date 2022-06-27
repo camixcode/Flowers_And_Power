@@ -1,5 +1,6 @@
 
 from dataclasses import fields
+from re import M
 from django import forms
 from django.forms import ModelForm
 from .models import Producto, Usuario
@@ -26,3 +27,13 @@ class CustomerUserCreationForm (UserCreationForm):
    class Meta:
     model = User
     fields=['username',"first_name","last_name","email","password1","password2"]
+
+class ModificarUsuario (ModelForm):
+   class Meta:
+    model = User
+    fields=['username',"first_name","last_name","email"]
+
+class CrearCuentaAdmin (UserCreationForm):
+   class Meta:
+    model = User
+    fields=['username',"first_name","last_name","email","is_superuser","password1","password2"]

@@ -56,7 +56,8 @@
                                 <td>{{usu.first_name}}</td>
                                 <td>{{usu.last_name}}</td> 
                                 <td>{{usu.email}}</td>   
-                                <td></td>                            
+                                <td><a href="http://127.0.0.1:8000/form_mod_usuario/{{usu.id}}">Modificar</a>/
+                                <a href="http://127.0.0.1:8000/form_borrar_usuario/{{usu.id}}">Eliminar</a></td>                            
 
                             </tr>
                             {% endfor %}

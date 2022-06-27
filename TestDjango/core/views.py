@@ -12,7 +12,7 @@ from xml.dom.minidom import Document
 from xml.parsers.expat import model
 import django
 from django.shortcuts import redirect, render
-from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreationForm
+from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreationForm, ModificarUsuario, CrearCuentaAdmin
 from django.contrib.auth import authenticate, login
 from core.Carrito import Carrito
 from django.contrib import messages
@@ -94,9 +94,9 @@ def form_borrar_producto(request,id):
     return render(request, 'core/listado_producto.html',datos)
 
 def form_borrar_usuario(request,id):
-    usuario = Usuario.objects.get(idUsuario=id)
+    usuario = User.objects.get(id=id)
     usuario.delete()
-    usuarios =Usuario.objects.all()
+    usuarios =User.objects.all()
     
     datos = {
         'usuarios':usuarios
@@ -149,11 +149,11 @@ def Tierra(request):
 
 def form_usuario(request):
     datos = {
-        'form': RegistrarUsuario()
+        'form': CrearCuentaAdmin()
     }
 
     if request.method == 'POST':
-        formmulario = RegistrarUsuario(request.POST)
+        formmulario = CrearCuentaAdmin(request.POST)
         if formmulario.is_valid:
             formmulario.save()
             datos['mensaje'] = "Guardados Correctamente"
@@ -190,14 +190,18 @@ def F_Crear_Cuenta(request):
     return render(request, 'core/F_Crear_Cuenta.html',datos)
 
 def form_mod_usuario(request,id):
-    usuario =Usuario.objects.get(idUsuario = id)
+    usuario =User.objects.get(id = id)
     datos={
-        'form': RegistrarUsuario(instance=usuario)
+        'form': ModificarUsuario(instance=usuario)
     }
     if request.method == 'POST':
-        formulario = RegistrarUsuario(data=request.POST, instance= usuario)
+        formulario = ModificarUsuario(data=request.POST, instance= usuario)
         if formulario.is_valid:
             formulario.save()
+            datos={
+        'form': ModificarUsuario(instance=usuario),
+        'mensaje' : "Usuario Modificado corrctamente"
+            }
 
     return render(request, 'core/form_mod_usuario.html',datos)
 
@@ -210,6 +214,10 @@ def form_mod_producto(request,id):
         formulario = RegistrarProducto(data=request.POST,files=request.FILES, instance= producto)
         if formulario.is_valid():
             formulario.save()
+            datos={
+                'form': RegistrarProducto(instance=producto),
+                'mensaje' : "Modificado corretamente"
+                }
 
     return render(request, 'core/form_mod_producto.html',datos)
 
