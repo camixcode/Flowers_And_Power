@@ -138,8 +138,17 @@ def Nosotros(request):
 def Paypal(request):
     return render(request, 'core/Paypal.html')   
 
-def PerfilProducto(request):
-    return render(request, 'core/PerfilProducto.html')      
+def PerfilProducto(request,id):
+    producto =Producto.objects.get(idProducto = id)
+    
+    
+    datos = {
+        'productos': producto,
+        'form': RegistrarProducto(instance=producto)
+    }  
+    
+    
+    return render(request, 'core/PerfilProducto.html',datos)      
 
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
