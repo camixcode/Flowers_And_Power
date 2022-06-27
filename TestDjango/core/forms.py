@@ -25,4 +25,4 @@ class RegistrarProducto(ModelForm):
 class CustomerUserCreationForm (UserCreationForm):
    class Meta:
     model = User
-    fields=['username',"first_name","last_name","email","password1","password2"]
+    fields=['username',"first_name","last_name","email","is_superuser","password1","password2"]

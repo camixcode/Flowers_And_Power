@@ -171,10 +171,7 @@ def form_producto(request):
         if formmulario.is_valid():
             formmulario.save()
             datos['mensaje'] = "Guardados Correctamente"
-    return render(request, 'core/form_producto.html',datos)     
-
-def form_mod_producto(request):
-    return render(request, 'core/form_producto.html')                      
+    return render(request, 'core/form_producto.html',datos)                          
 
 
 def F_Crear_Cuenta(request):
@@ -210,8 +207,8 @@ def form_mod_producto(request,id):
         'form': RegistrarProducto(instance=producto)
     }
     if request.method == 'POST':
-        formulario = RegistrarProducto(data=request.POST, instance= producto)
-        if formulario.is_valid:
+        formulario = RegistrarProducto(data=request.POST,files=request.FILES, instance= producto)
+        if formulario.is_valid():
             formulario.save()
 
     return render(request, 'core/form_mod_producto.html',datos)
