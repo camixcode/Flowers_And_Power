@@ -166,9 +166,9 @@ def form_producto(request):
     }
     if request.method == 'POST':
 
-        formmulario = RegistrarProducto(request.POST)
+        formmulario = RegistrarProducto(request.POST , request.FILES)
 
-        if formmulario.is_valid:
+        if formmulario.is_valid():
             formmulario.save()
             datos['mensaje'] = "Guardados Correctamente"
     return render(request, 'core/form_producto.html',datos)     
