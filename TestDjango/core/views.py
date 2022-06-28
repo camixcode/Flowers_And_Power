@@ -17,12 +17,23 @@ from django.contrib.auth import authenticate, login
 from core.Carrito import Carrito
 from django.contrib import messages
 from django.contrib.auth.models import User 
+from rest_framework import viewsets
+from .serializers import ProductoSerializer
+from .models import Producto, Usuario
 
 
+class ProductoViewset(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
 
+    def get_queryset(self):
+        productos = Producto.objects.all()
+        nombreProducto = self.request.GET.get('nombreProducto')
 
-from . models import Producto,Usuario
+        if nombreProducto:
+            productos = productos.filter(nombreProducto__contains=nombreProducto)
 
+        return productos     
 
 # Create your views here.
 def home(request):
