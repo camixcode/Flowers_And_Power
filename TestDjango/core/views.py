@@ -1,4 +1,5 @@
 from ast import Try
+from distutils.command import clean
 from email import message
 from itertools import product
 from math import prod
@@ -148,14 +149,9 @@ def Paypal(request):
     return render(request, 'core/Paypal.html')   
 
 def PerfilProducto(request,id):
-    producto =Producto.objects.get(idProducto = id)
-    
-    
-    datos = {
-        'productos': producto,
-        'form': RegistrarProducto(instance=producto)
-    }  
-    
+    datos ={
+        'producto' : Producto.objects.get(idProducto= id)
+    }
     
     return render(request, 'core/PerfilProducto.html',datos)      
 
