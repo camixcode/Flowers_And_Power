@@ -35,8 +35,6 @@ def home(request):
     return render(request, 'core/home.html', datos)
 
 
-
-
 def Producto1(request):
     productos =Producto.objects.all()
     datos = {
