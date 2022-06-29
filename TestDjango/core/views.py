@@ -1,5 +1,4 @@
 from ast import Try
-from distutils.command import clean
 from email import message
 from itertools import product
 from math import prod
@@ -13,28 +12,17 @@ from xml.dom.minidom import Document
 from xml.parsers.expat import model
 import django
 from django.shortcuts import redirect, render
-from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreationForm, ModificarUsuario, CrearCuentaAdmin
+from core.forms import RegistrarProducto, RegistrarUsuario , CustomerUserCreationForm
 from django.contrib.auth import authenticate, login
 from core.Carrito import Carrito
 from django.contrib import messages
 from django.contrib.auth.models import User 
-from rest_framework import viewsets
-from .serializers import ProductoSerializer
-from .models import Producto, Usuario
 
 
-class ProductoViewset(viewsets.ModelViewSet):
-    queryset = Producto.objects.all()
-    serializer_class = ProductoSerializer
 
-    def get_queryset(self):
-        productos = Producto.objects.all()
-        nombreProducto = self.request.GET.get('nombreProducto')
 
-        if nombreProducto:
-            productos = productos.filter(nombreProducto__contains=nombreProducto)
+from . models import Producto,Usuario
 
-        return productos     
 
 # Create your views here.
 def home(request):
@@ -45,6 +33,8 @@ def home(request):
         "nombre": "diego araya"
     }  
     return render(request, 'core/home.html', datos)
+
+
 
 
 def Producto1(request):
@@ -104,9 +94,9 @@ def form_borrar_producto(request,id):
     return render(request, 'core/listado_producto.html',datos)
 
 def form_borrar_usuario(request,id):
-    usuario = User.objects.get(id=id)
+    usuario = Usuario.objects.get(idUsuario=id)
     usuario.delete()
-    usuarios =User.objects.all()
+    usuarios =Usuario.objects.all()
     
     datos = {
         'usuarios':usuarios
@@ -148,12 +138,8 @@ def Nosotros(request):
 def Paypal(request):
     return render(request, 'core/Paypal.html')   
 
-def PerfilProducto(request,id):
-    datos ={
-        'producto' : Producto.objects.get(idProducto= id)
-    }
-    
-    return render(request, 'core/PerfilProducto.html',datos)      
+def PerfilProducto(request):
+    return render(request, 'core/PerfilProducto.html')      
 
 def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
@@ -163,11 +149,11 @@ def Tierra(request):
 
 def form_usuario(request):
     datos = {
-        'form': CrearCuentaAdmin()
+        'form': RegistrarUsuario()
     }
 
     if request.method == 'POST':
-        formmulario = CrearCuentaAdmin(request.POST)
+        formmulario = RegistrarUsuario(request.POST)
         if formmulario.is_valid:
             formmulario.save()
             datos['mensaje'] = "Guardados Correctamente"
@@ -180,12 +166,15 @@ def form_producto(request):
     }
     if request.method == 'POST':
 
-        formmulario = RegistrarProducto(request.POST , request.FILES)
+        formmulario = RegistrarProducto(request.POST)
 
-        if formmulario.is_valid():
+        if formmulario.is_valid:
             formmulario.save()
             datos['mensaje'] = "Guardados Correctamente"
-    return render(request, 'core/form_producto.html',datos)                          
+    return render(request, 'core/form_producto.html',datos)     
+
+def form_mod_producto(request):
+    return render(request, 'core/form_producto.html')                      
 
 
 def F_Crear_Cuenta(request):
@@ -204,18 +193,14 @@ def F_Crear_Cuenta(request):
     return render(request, 'core/F_Crear_Cuenta.html',datos)
 
 def form_mod_usuario(request,id):
-    usuario =User.objects.get(id = id)
+    usuario =Usuario.objects.get(idUsuario = id)
     datos={
-        'form': ModificarUsuario(instance=usuario)
+        'form': RegistrarUsuario(instance=usuario)
     }
     if request.method == 'POST':
-        formulario = ModificarUsuario(data=request.POST, instance= usuario)
+        formulario = RegistrarUsuario(data=request.POST, instance= usuario)
         if formulario.is_valid:
             formulario.save()
-            datos={
-        'form': ModificarUsuario(instance=usuario),
-        'mensaje' : "Usuario Modificado corrctamente"
-            }
 
     return render(request, 'core/form_mod_usuario.html',datos)
 
@@ -225,13 +210,9 @@ def form_mod_producto(request,id):
         'form': RegistrarProducto(instance=producto)
     }
     if request.method == 'POST':
-        formulario = RegistrarProducto(data=request.POST,files=request.FILES, instance= producto)
-        if formulario.is_valid():
+        formulario = RegistrarProducto(data=request.POST, instance= producto)
+        if formulario.is_valid:
             formulario.save()
-            datos={
-                'form': RegistrarProducto(instance=producto),
-                'mensaje' : "Modificado corretamente"
-                }
 
     return render(request, 'core/form_mod_producto.html',datos)
 

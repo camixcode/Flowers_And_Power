@@ -61,8 +61,6 @@
                                 <p class="card-text "> Precio: <br>${{pr.precioProducto}}</p>
                                 <a href=" http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}} " class="btn btn-primary">
                                      Agregar a Carrito</a>
-                                     <a href=" http://127.0.0.1:8000/PerfilProducto/{{pr.idProducto}} " class="btn btn-primary">
-                                        Ver detalle</a>
                             </div>
                         {%else%}
                         <img src="{{pr.imagen.url}}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} ">
@@ -72,8 +70,6 @@
                             <p class="card-text "> Precio: <br>${{pr.precioProducto}}</p>
                             <a href=" http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}} " class="btn btn-primary">
                                  Agregar a Carrito</a>
-                            <a href=" http://127.0.0.1:8000/PerfilProducto/{{pr.idProducto}} " class="btn btn-primary">
-                                    Ver detalle</a>
                         </div>
                         {%endif%} 
                     </div>

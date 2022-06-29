@@ -1,19 +1,18 @@
-from django.urls import path, include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from core.Carrito import Carrito
-from rest_framework import routers
 #from TestDjango.core.models import Producto
-from .views import Arbusto, ProductoViewset, agregar_producto, eliminar_producto, registro,home, Contacto,\
+
+
+
+from .views import Arbusto, agregar_producto, eliminar_producto, registro,home, Contacto,\
     Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,\
     limpiar_carrito,listado_producto, Paypal,PerfilProducto,Producto1,Seguimiento,Tierra,\
     Macetero,index_homeOG, form_usuario,restar_producto, form_producto, Carrito,\
     form_mod_producto,form_borrar_producto , listado_usuario, form_borrar_usuario
 # ,NavBar
-
-router = routers.DefaultRouter()
-router.register ('producto', ProductoViewset)
 
 
 urlpatterns = [
@@ -37,7 +36,7 @@ urlpatterns = [
     path('Macetero/', Macetero, name="Macetero"),
     path('Nosotros/', Nosotros, name="Nosotros"),
     path('Paypal/', Paypal, name="Paypal"),
-    path('PerfilProducto/<id>', PerfilProducto, name="PerfilProducto"),
+    path('PerfilProducto/', PerfilProducto, name="PerfilProducto"),
     path('Producto/', Producto1, name="Producto"),
     path('Seguimiento/', Seguimiento, name="Seguimiento"),
     path('Tierra/', Tierra, name="Tierra"),
@@ -49,7 +48,6 @@ urlpatterns = [
     path('form_mod_producto/<id>/', form_mod_producto, name="form_mod_producto"),
     path('form_borrar_producto/<id>/',form_borrar_producto, name="form_borrar_producto"),
     path('form_borrar_usuario/<id>/',form_borrar_usuario, name="form_borrar_usuario"),
-    path('api/', include(router.urls)),
 
 ]
 

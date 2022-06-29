@@ -19,7 +19,6 @@ class Producto(models.Model):
     imagen = models.ImageField ( upload_to= 'producto', null= True, default=None)
     categoria = models.CharField(max_length=50,verbose_name='categoria')
 
-
     def __str__(self):
         return self.nombreProducto
 
