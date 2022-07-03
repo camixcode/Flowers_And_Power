@@ -23,6 +23,9 @@ from .serializers import ProductoSerializer
 from .models import Producto, Usuario
 
 
+
+
+
 class ProductoViewset(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
@@ -170,7 +173,12 @@ def form_usuario(request):
         formmulario = CrearCuentaAdmin(request.POST)
         if formmulario.is_valid:
             formmulario.save()
+            user = authenticate(username=formmulario.cleaned_data["username"], password=formmulario.cleaned_data["password1"])
+            login(request,user)
+            messages.success(request,"Te has registrado correctamente")
             datos['mensaje'] = "Guardados Correctamente"
+            return redirect(to="index_home")
+            
 
     return render(request, 'core/form_usuario.html',datos)          
 
