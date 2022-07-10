@@ -100,6 +100,7 @@ def form_borrar_producto(request,id):
     producto = Producto.objects.get(idProducto=id)
     producto.delete()
     productos =Producto.objects.all()
+    messages.success(request,"Producto eliminado correctamente")
     
     datos = {
         'productos':productos
@@ -110,7 +111,7 @@ def form_borrar_usuario(request,id):
     usuario = User.objects.get(id=id)
     usuario.delete()
     usuarios =User.objects.all()
-    
+    messages.success(request,"Usuario eliminado correctamente")
     datos = {
         'usuarios':usuarios
     }
@@ -173,11 +174,10 @@ def form_usuario(request):
         formmulario = CrearCuentaAdmin(request.POST)
         if formmulario.is_valid:
             formmulario.save()
-            user = authenticate(username=formmulario.cleaned_data["username"], password=formmulario.cleaned_data["password1"])
-            login(request,user)
-            messages.success(request,"Te has registrado correctamente")
+            messages.success(request,"Cuenta administrdora registrada correctamente")
             datos['mensaje'] = "Guardados Correctamente"
-            return redirect(to="index_home")
+            return redirect(to="listado_usuario")
+
             
 
     return render(request, 'core/form_usuario.html',datos)          
@@ -192,6 +192,7 @@ def form_producto(request):
 
         if formmulario.is_valid():
             formmulario.save()
+            messages.success(request,"Producto registrado correctamente")
             datos['mensaje'] = "Guardados Correctamente"
     return render(request, 'core/form_producto.html',datos)                          
 
@@ -220,10 +221,11 @@ def form_mod_usuario(request,id):
         formulario = ModificarUsuario(data=request.POST, instance= usuario)
         if formulario.is_valid:
             formulario.save()
+            messages.success(request,"Usuario modificado correctamente")
             datos={
-        'form': ModificarUsuario(instance=usuario),
-        'mensaje' : "Usuario Modificado corrctamente"
-            }
+                'form': ModificarUsuario(instance=usuario),
+                'mensaje' : "Usuario Modificado corrctamente"
+                }
 
     return render(request, 'core/form_mod_usuario.html',datos)
 
@@ -236,6 +238,7 @@ def form_mod_producto(request,id):
         formulario = RegistrarProducto(data=request.POST,files=request.FILES, instance= producto)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request,"Producto modificado correctamente")
             datos={
                 'form': RegistrarProducto(instance=producto),
                 'mensaje' : "Modificado corretamente"
@@ -250,11 +253,11 @@ def registro (request):
     }
     if request.method =='POST':
         formulario = CustomerUserCreationForm(data= request.POST)
-        if formulario.is_valid():
+        if formulario.is_valid:
             formulario.save()
+            messages.success(request,"Te has registrado correctamente")
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request,user)
-            messages.success(request,"Te has registrado correctamente")
             return redirect(to="index_home")
         data["form"] = formulario
     return render(request, 'registration/registro.html',data)
