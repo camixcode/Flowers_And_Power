@@ -46,6 +46,7 @@
                                 <td>nombres</td>
                                 <td>apellidos</td>
                                 <td>Email</td>
+                                <td>Administrador</td>
                                 <td>Opciones</td>
                                 
                             </tr>
@@ -55,7 +56,12 @@
                                 <td>{{usu.username}}</td>
                                 <td>{{usu.first_name}}</td>
                                 <td>{{usu.last_name}}</td> 
-                                <td>{{usu.email}}</td>   
+                                <td>{{usu.email}}</td> 
+                                {% if usu.is_superuser %}
+                                <td>SI</td>  
+                                {% else %}
+                                <td>NO</td>
+                                {% endif %}
                                 <td><a href="http://127.0.0.1:8000/form_mod_usuario/{{usu.id}}">Modificar</a>/
                                 <a href="http://127.0.0.1:8000/form_borrar_usuario/{{usu.id}}">Eliminar</a></td>                            
 
@@ -71,4 +77,16 @@
 <div>
         {% include "Footer.html" %}
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+        {% for m in messages %}
+            <script>
+                    Swal.fire({
+                        "title": "Felicitaciones",
+                        "text": "{{m}}",
+                        "icon": "success"
+                        })
+            </script>
+        {% endfor %}
+    {% endif %}
 </html>
