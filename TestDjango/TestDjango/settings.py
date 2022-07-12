@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
     'rest_framework',
-
-
+    'rest_producto',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -146,3 +146,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
