@@ -66,70 +66,48 @@
     <p id="parrafo">Inspírate con nuestros productos como: Árboles, Plantas, Flores y Maceteros. Encuentra todo lo que necesitas para darle más verde a tu vida. Si el producto que estas buscando no se encuentra en nuestra pagina web escríbenos a: contacto@flowersandpower.cl y haremos lo posible
         por traer el articulo para ti.</p>
 
-    <h3 id="texto" class=" text-center pb-5 pt-5 h1"> <strong> Productos más vendidos</strong></h3>
+    <h3 id="texto" class=" text-center pb-5 pt-5 h1"> <strong> Productos en oferta</strong></h3>
 
 
-    <div id="categorias">
-        <div>
-            <div class="card w-40 card-border mb-3">
-                <div class="card h-100">
-                    <img src="{% static 'core/img/imghome/P_1.jpg' %}"  width="250"alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Fiskars</h5>
-                        <a href="{% static 'core/img/imghome/P_1.jpg' %}">ver producto</a>
-                        <p></p>
-                        <p class="card-text">Pack Herramientas de Cultivo (Pala, Rastrillo y Trasplantador)</p>
-                        <p class="card-text">$11.990</p>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="row">
+        <div class="col-2">
 
-        <div>
-            <div class="card w-40 card-border mb-3">
-                <div class="card h-100">
-                    <img src="{% static 'core/img/imghome/P_2.jpg' %}"  width="300" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Anasac </h5>
-                        <a href="{% static 'core/img/imghome/P_2.jpg' %}">ver producto</a>
-                        <p></p>
-                        <p class="card-text">Fertilizante Fert Plant. De gran uso y rápido efecto.</p>
-                        <p class="card-text">$13.990</p>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                {%for pr in productos %}
+                <div class="col-md-3 col-sm-12 col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        {% if pr.imagen == '' %} 
+                        <img src="{% static 'core/img/Flowers.png' %}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} ">
+                            <div class="card-body">
+                                <!---<h5 class="card-title ">{{pr.idProducto}}</h5>-->
+                                <p class="card-text "> Nombre de Producto: <br>{{pr.nombreProducto}}</p>
+                                <p class="card-text "> Precio: <br>${{pr.precioProducto}}</p>
+                                <a href=" http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}} " class="btn btn-primary">
+                                     Agregar a Carrito</a>
+                                     <a href=" http://127.0.0.1:8000/PerfilProducto/{{pr.idProducto}} " class="btn btn-primary">
+                                        Ver detalle</a>
+                            </div>
+                        {%else%}
+                        <img src="{{pr.imagen.url}}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} " width="200" height="200">
+                        <div class="card-body">
+                            <!---<h5 class="card-title ">{{pr.idProducto}}</h5>-->
+                            <p class="card-text "> Nombre de Producto: <br>{{pr.nombreProducto}}</p>
+                            <p class="card-text "> Precio: <br>${{pr.precioProducto}}</p>
+                            <a href=" http://127.0.0.1:8000/agregar_producto/{{pr.idProducto}} " class="btn btn-primary">
+                                 Agregar a Carrito</a>
+                            <a href=" http://127.0.0.1:8000/PerfilProducto/{{pr.idProducto}} " class="btn btn-primary">
+                                    Ver detalle</a>
+                        </div>
+                        {%endif%} 
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        <div>
-            <div class="card w-40 card-border mb-3">
-                <div class="card h-100">
-                    <img src="{% static 'core/img/imghome/P_4.jpg' %}"  width="300" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Anasac</h5>
-                        <a href="{% static 'core/img/imghome/P_4.jpg' %}">ver producto</a>
-                        <p></p>
-                        <p class="card-text">Semillas de Acelga</p>
-                        <p class="card-text">$1.990</p>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="card w-40 card-border mb-3">
-                <div class="card h-100">
-                    <img src="{% static 'core/img/imghome/P_5.jpg' %}"  width="300" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Roots</h5>
-                        <a href="{% static 'core/img/imghome/P_5.jpg' %}">ver producto</a>
-                        <p></p>
-                        <p class="card-text">Macetero Geometrico</p>
-                        <p class="card-text">$35.990</p>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
+        <div class="col-2">
+
         </div>
     </div>
 

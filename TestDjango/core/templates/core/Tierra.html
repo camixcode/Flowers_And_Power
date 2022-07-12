@@ -47,15 +47,15 @@
     </div>
     <br> <br>
     
-
     <div class="row">
         <div class="col-8">
             <div class="row">
+                <br><br>
                 {%for pr in productos %}
                 <div class="col-md-3 col-sm-12 col-lg-4">
                     <div class="card" style="width: 18rem;">
                         {% if pr.imagen == '' %} 
-                        <img src="{% static 'core/img/Flowers.png' %}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} ">
+                        <img src="{% static 'core/img/Flowers.png' %}" style="width: 100% ; " class="card-img-top " alt="{{pr.nombreProducto}} " width="250" height="250">
                             <div class="card-body">
                                 <!---<h5 class="card-title ">{{pr.idProducto}}</h5>-->
                                 <p class="card-text "> Nombre de Producto: <br>{{pr.nombreProducto}}</p>

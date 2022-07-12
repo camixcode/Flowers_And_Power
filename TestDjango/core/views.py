@@ -125,7 +125,11 @@ def HistoricoCompra(request):
     return render(request, 'core/HistoricoCompra.html')
 
 def index_home(request):
-    return render(request, 'core/index_home.html')    
+    productos =Producto.objects.filter(precioProducto__lte=12990)
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/index_home.html',datos)    
 
 def index_homeOG(request):
     return render(request, 'core/index_homeOG.html')    
