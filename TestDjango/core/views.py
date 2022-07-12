@@ -27,6 +27,8 @@ from .models import Producto, Usuario
 
 
 class ProductoViewset(viewsets.ModelViewSet):
+    #authentication_classes=[]
+    #permission_classes=[]
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
 
