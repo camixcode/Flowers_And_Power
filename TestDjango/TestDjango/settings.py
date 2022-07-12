@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
     'rest_framework',
+    'rest_producto',
 
 
 ]
