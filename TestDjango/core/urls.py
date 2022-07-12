@@ -9,7 +9,7 @@ from .views import Arbusto, ProductoViewset, agregar_producto, eliminar_producto
     Categoria1, F_Crear_Cuenta,form_mod_usuario,Nosotros,HistoricoCompra,index_home,InicioSesion1,\
     limpiar_carrito,listado_producto, Paypal,PerfilProducto,Producto1,Seguimiento,Tierra,\
     Macetero,index_homeOG, form_usuario,restar_producto, form_producto, Carrito,\
-    form_mod_producto,form_borrar_producto , listado_usuario, form_borrar_usuario, StockProductos
+    form_mod_producto,form_borrar_producto , listado_usuario, form_borrar_usuario, PrecioCripto
 # ,NavBar
 
 router = routers.DefaultRouter()
@@ -50,7 +50,7 @@ urlpatterns = [
     path('form_borrar_producto/<id>/',form_borrar_producto, name="form_borrar_producto"),
     path('form_borrar_usuario/<id>/',form_borrar_usuario, name="form_borrar_usuario"),
     path('api/', include(router.urls)),
-    path('StockProductos/', StockProductos, name="StockProductos"),
+    path('PrecioCripto/', PrecioCripto, name="PrecioCripto"),
 
 ]
 

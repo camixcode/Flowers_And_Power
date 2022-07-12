@@ -262,8 +262,8 @@ def registro (request):
         data["form"] = formulario
     return render(request, 'registration/registro.html',data)
 
-def StockProductos(request):
-    return render(request, 'core/StockProductos.html')
+def PrecioCripto(request):
+    return render(request, 'core/PrecioCripto.html')
 
 #def NavBar(request):
  #   return render(request, 'core/NavBar.html')  
