@@ -14,7 +14,7 @@ from rest_framework.permissions import IsAuthenticated
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
-@permission_classes((IsAuthenticated,))
+##@permission_classes((IsAuthenticated,))
 def lista_Producto(request):
     """
     LISTA DE TODOS LOS Productos 
@@ -32,7 +32,7 @@ def lista_Producto(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes((IsAuthenticated,))
+#@permission_classes((IsAuthenticated,))
 def detalle_Producto(request, id):
     """
     GET, UPDATE O DELETE DE UN VEHICULO EN PARTICULAR
