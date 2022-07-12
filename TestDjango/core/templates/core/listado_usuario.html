@@ -31,6 +31,28 @@
         </div>
         {%endblock%}
 
+        {% block js %}
+            <script>
+                function eliminarUsuario(id){
+                Swal.fire({
+                    "title":"¿Estas Seguro?",
+                    "text":"Esta accion no se puede deshacer",
+                    "icon":"question",
+                    "showCancelButton":true,
+                    "cancelButtonText":"No, cancelar",
+                    "confirmButtonText":"Si, eliminar",
+                    "reverseButtons":true,
+                    "confirmButtonColor":"#dc3545"
+                })
+                .then(function(result){
+                    if(result.isConfirmed){
+                        window.location.href= "http://127.0.0.1:8000/form_borrar_usuario/"+id+"/"
+                    }
+                })
+            }
+            </script>
+        {% endblock %}
+
 
     </header>
     <h1>Listado Usuarios</h1>
@@ -63,7 +85,7 @@
                                 <td>NO</td>
                                 {% endif %}
                                 <td><a href="http://127.0.0.1:8000/form_mod_usuario/{{usu.id}}">Modificar</a>/
-                                <a href="http://127.0.0.1:8000/form_borrar_usuario/{{usu.id}}">Eliminar</a></td>                            
+                                <a href="#" onclick="eliminarUsuario({{usu.id}})">Eliminar</a></td>                            
 
                             </tr>
                             {% endfor %}

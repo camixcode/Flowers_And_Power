@@ -31,6 +31,28 @@
         </div>
         {%endblock%}
 
+        {% block js %}
+            <script>
+                function eliminarProducto(id){
+                Swal.fire({
+                    "title":"¿Estas Seguro?",
+                    "text":"Esta accion no se puede deshacer",
+                    "icon":"question",
+                    "showCancelButton":true,
+                    "cancelButtonText":"No, cancelar",
+                    "confirmButtonText":"Si, eliminar",
+                    "reverseButtons":true,
+                    "confirmButtonColor":"#dc3545"
+                })
+                .then(function(result){
+                    if(result.isConfirmed){
+                        window.location.href= "http://127.0.0.1:8000/form_borrar_producto/"+id+"/"
+                    }
+                })
+            }
+            </script>
+        {% endblock %}
+
 
     </header>
     <h1>Listado Productos</h1>
@@ -59,7 +81,7 @@
                                 <td>{{pr.categoria}}</td>                                
                                 <td>{{pr.imagen}}</td>
                                 <td><a href="http://127.0.0.1:8000/form_mod_producto/{{pr.idProducto}}">Modificar</a>/
-                                <a href="http://127.0.0.1:8000/form_borrar_producto/{{pr.idProducto}}">Eliminar</a></td>
+                                <a href="#" onclick="eliminarProducto({{pr.idProducto}})">Eliminar</a></td>
 
 
                             </tr>

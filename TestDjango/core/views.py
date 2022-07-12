@@ -81,7 +81,11 @@ def limpiar_carrito(request):
     return redirect("Producto") 
 
 def Arbusto(request):
-    return render(request, 'core/Arbusto.html')
+    productos =Producto.objects.filter(categoria="arbusto")
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/Arbusto.html',datos)
 
 def Contacto(request):
     return render(request, 'core/Contacto.html')
@@ -144,7 +148,11 @@ def listado_usuario(request):
     return render(request, 'core/listado_usuario.html',datos)   
 
 def Macetero(request):
-    return render(request, 'core/Macetero.html')    
+    productos =Producto.objects.filter(categoria="macetero")
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/Macetero.html',datos)    
 
 def Nosotros(request):
     return render(request, 'core/Nosotros.html')                
@@ -163,7 +171,11 @@ def Seguimiento(request):
     return render(request, 'core/Seguimiento.html')      
 
 def Tierra(request):
-    return render(request, 'core/Tierra.html')     
+    productos =Producto.objects.filter(categoria="tierra de hojas")
+    datos = {
+        'productos':productos
+    }
+    return render(request, 'core/Tierra.html',datos)     
 
 def form_usuario(request):
     datos = {
